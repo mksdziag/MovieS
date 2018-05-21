@@ -1,0 +1,59 @@
+.to-watch__wrapper {
+  color: white;
+}
+
+.to-watch__title {
+  padding: 1rem;
+  text-align: center;
+}
+
+.to-watch__content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  border: 1px solid rgba(238, 238, 238, 0.25);
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.to-watch__cover-wrapper {
+  position: relative;
+}
+
+.to-watch__movie-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(66, 156, 24);
+  box-shadow: 0 .25rem .25rem rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  font-size: .8rem;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.to-watch__movie-cover {
+  width: 100%;
+}
+
+.to-watch__movie-title {
+  text-align: left;
+  margin-bottom: .25rem;
+  font-style: italic;
+}
+
+.to-watch__movie-desc {
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.to-watch__movie-release {
+  font-size: .75rem;
+  margin-bottom: 1rem;
+}
