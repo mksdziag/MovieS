@@ -1,0 +1,85 @@
+.watched__content {
+  width: 200px;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.watched__cover-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.watched__movie-cover {
+  width: 100%;
+  transition: all 150ms ease-out;
+}
+.watched__movie-cover:hover {
+  filter: blur(2px);
+}
+
+.watched__movie-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(66, 156, 24);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.watched__movie-my-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #05a8aa;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  height: 3.25rem;
+  width: 3.25rem;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -0.5rem;
+  z-index: 2;
+  left: -0.5rem;
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.watched__movie-title {
+  font-size: 1rem;
+  text-align: center;
+  background-color: #a20021;
+  position: relative;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 75%;
+  border-radius: 5px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.watched__wrapper {
+  color: white;
+}
+
+.watched__title {
+  padding: 1rem;
+  text-align: center;
+}
+
+.watched__movies-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

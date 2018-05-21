@@ -1,0 +1,13 @@
+.movie-rating__select {
+  position: absolute;
+  height: 3rem;
+  width: 3rem;
+  bottom: -1rem;
+  left: -.25rem;
+  border-radius: 50%;
+  background-color: gray;
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}

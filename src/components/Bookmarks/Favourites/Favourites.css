@@ -1,0 +1,75 @@
+.favourites__content {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.favourites__cover-wrapper {
+  width: 320px;
+  position: relative;
+}
+
+.favourites__movie-cover {
+  width: 100%;
+}
+
+.favourites__movie-my-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eac435;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: -0.5rem;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.favourites__movie-title {
+  font-size: 1rem;
+  text-align: center;
+  background-color: #eac435;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.267);
+  position: relative;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 75%;
+  border-radius: 5px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.favourites__wrapper {
+}
+
+.favourites__title {
+  text-align: center;
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.favourites__movies-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourites__movie-place {
+  font-size: 4rem;
+  position: absolute;
+  top: -2.5rem;
+  left: -0.5rem;
+  font-weight: bold;
+  color: #a20021;
+  font-family: "Merienda", cursive;
+  font-style: italic;
+  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.75);
+}
