@@ -49,8 +49,26 @@ class Search extends Component {
     });
   };
 
+
+  addToWatchedHandler = () => {
+    this.props.addMoviesHandler(this.state.wantToWatchToAdd);
+    this.setState((prevState, currState) => { return { wantToWatchToAdd: [] } });
+  }
+
   render() {
     const moviesListItems = this.state.findedMovies.map(movie => {
+      const noteBackground = { backgroundColor: '' };
+      if (movie.vote_average >= 7) {
+        noteBackground.backgroundColor = '#288112';
+      } else if (movie.vote_average >= 5) {
+        noteBackground.backgroundColor = '#d17e11';
+      } else if (movie.vote_average > 0) {
+        noteBackground.backgroundColor = '#d11111';
+      } else {
+        noteBackground.backgroundColor = 'rgba(128, 128, 128, 0.5)';
+      };
+
+
       return (
         <li className="search__list-item" key={movie.id}>
           <img
@@ -83,7 +101,7 @@ class Search extends Component {
           </div>
         </li>
       );
-    });
+    })
 
     return (
       <div className="search">
@@ -96,16 +114,14 @@ class Search extends Component {
         />
         <div className="search__accept-add">
           <button
-            onClick={() =>
-              this.props.addMoviesHandler(this.state.wantToWatchToAdd)
-            }
+            onClick={this.addToWatchedHandler}
             className="btn btn--accept-add"
           >
             Confirm add
-          </button>
           <span className="search__acceped-counter">
-            {this.state.wantToWatchToAdd.length}
-          </span>
+              ({this.state.wantToWatchToAdd.length})
+            </span>
+          </button>
         </div>
         <div className="search__finded-list-wrapper">
           <ul className="search__finded-list">{moviesListItems}</ul>

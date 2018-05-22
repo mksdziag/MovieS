@@ -7,31 +7,21 @@
 
 .watched__cover-wrapper {
   position: relative;
-<<<<<<< HEAD
-=======
-  overflow: hidden;
->>>>>>> 8582f16aedd7ee42fee0ecc62988d3f628499a20
 }
 
 .watched__movie-cover {
   width: 100%;
   transition: all 150ms ease-out;
 }
-<<<<<<< HEAD
 
 .watched__movie-cover:hover {
   filter: hue-rotate(345deg)
-=======
-.watched__movie-cover:hover {
-  filter: blur(2px);
->>>>>>> 8582f16aedd7ee42fee0ecc62988d3f628499a20
 }
 
 .watched__movie-note {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(66, 156, 24);
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
   border: 2px solid white;
   height: 2rem;
@@ -91,8 +81,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8582f16aedd7ee42fee0ecc62988d3f628499a20

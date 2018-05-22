@@ -1,15 +1,20 @@
 .favourites__content {
-  color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
+  height: 25rem;
+  width: 65%;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
 }
 
 .favourites__cover-wrapper {
-  width: 320px;
   position: relative;
+  display: block;
 }
 
 .favourites__movie-cover {
-  width: 100%;
+  max-width: 100%;
+  height: 25rem;
+  margin: 0 auto;
+  display: block;
 }
 
 .favourites__movie-my-note {
@@ -31,6 +36,18 @@
   flex-direction: column;
 }
 
+.favourites__movie-place {
+  font-size: 4rem;
+  position: absolute;
+  top: -2.5rem;
+  left: -0.5rem;
+  font-weight: bold;
+  color: #a20021;
+  font-family: "Merienda", cursive;
+  font-style: italic;
+  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.75);
+}
+
 .favourites__movie-title {
   font-size: 1rem;
   text-align: center;
@@ -45,8 +62,7 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
 }
 
-.favourites__wrapper {
-}
+.favourites__wrapper {}
 
 .favourites__title {
   text-align: center;
@@ -60,16 +76,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.favourites__movie-place {
-  font-size: 4rem;
-  position: absolute;
-  top: -2.5rem;
-  left: -0.5rem;
-  font-weight: bold;
-  color: #a20021;
-  font-family: "Merienda", cursive;
-  font-style: italic;
-  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.75);
+  list-style: none;
 }

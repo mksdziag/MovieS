@@ -51,24 +51,37 @@
 
 .btn--want {}
 
-.search__input {}
+.search__input {
+  margin: 0 auto 1rem;
+  width: 300px;
+  display: block;
+  padding: .75rem 1rem;
+  background-color: #3f3f5f;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  color: white;
+  font-size: 1.25rem;
+  font-family: inherit;
+}
+
+.search__input::placeholder {
+  color: rgba(128, 128, 128, 0.5);
+}
 
 .search__finded-list-wrapper {}
 
 .search__finded-list {}
 
 .search__acceped-counter {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  font-weight: 700;
-  background: white;
-  color: black;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
+  margin: 0 .5rem;
 }
 
 .search__accept-add {
   position: relative;
   display: flex;
   justify-content: center;
+}
+
+.btn--accept-add {
+  text-transform: uppercase;
 }
