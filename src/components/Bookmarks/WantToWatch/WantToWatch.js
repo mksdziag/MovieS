@@ -3,44 +3,45 @@ import "./WantToWatch.css";
 import Rating from "../../Rating/Rating";
 
 const wantToWatch = props => {
-  const moviesToWatch = props.movies.map(movie => {
-    const noteBackground = { backgroundColor: '' };
-    if (movie.vote_average >= 7) {
-      noteBackground.backgroundColor = '#288112';
-    } else if (movie.vote_average >= 5) {
-      noteBackground.backgroundColor = '#d17e11';
-    } else if (movie.vote_average > 0) {
-      noteBackground.backgroundColor = '#d11111';
+  const { movies, userRatingHandler } = props;
+  const moviesToWatch = movies.map(movie => {
+    const {
+      id,
+      poster_path,
+      vote_average,
+      title,
+      release_date,
+      overview
+    } = movie;
+    const noteBackground = { backgroundColor: "" };
+    if (vote_average >= 7) {
+      noteBackground.backgroundColor = "#288112";
+    } else if (vote_average >= 5) {
+      noteBackground.backgroundColor = "#d17e11";
+    } else if (vote_average > 0) {
+      noteBackground.backgroundColor = "#d11111";
     } else {
-      noteBackground.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-    };
+      noteBackground.backgroundColor = "rgba(128, 128, 128, 0.5)";
+    }
     return (
-      <div className="to-watch__content" key={movie.id}>
+      <div className="to-watch__item" key={id}>
         <div className="to-watch__cover-wrapper">
           <img
             className="to-watch__movie-cover"
-            src={
-              movie.poster_path &&
-              `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            }
+            src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
             alt="movie cover"
           />
-          <span style={noteBackground} className="to-watch__movie-note">{movie.vote_average}</span>
+          <span style={noteBackground} className="to-watch__note">
+            {vote_average}
+          </span>
           <Rating
-            userRatingHandler={e =>
-              props.userRatingHandler(e.target.value, movie.id)
-            }
+            userRatingHandler={e => userRatingHandler(e.target.value, id)}
           />
         </div>
         <div>
-          <h3 className="to-watch__movie-title">"{movie.title}"</h3>
-          <p className="to-watch__movie-release">
-            Released: {movie.release_date}
-          </p>
-          <p className="to-watch__movie-desc">{movie.overview}</p>
-        </div>
-        <div>
-          <button className="btn btn--rate">Rate</button>
+          <h3 className="to-watch__movie-title">"{title}"</h3>
+          <p className="to-watch__release-date">Released: {release_date}</p>
+          <p className="to-watch__desc">{overview}</p>
         </div>
       </div>
     );

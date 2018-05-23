@@ -1,13 +1,4 @@
-.to-watch__wrapper {
-  color: white;
-}
-
-.to-watch__title {
-  padding: 1rem;
-  text-align: center;
-}
-
-.to-watch__content {
+.to-watch__item {
   display: grid;
   grid-template-columns: 1fr 3fr;
   border: 1px solid rgba(238, 238, 238, 0.25);
@@ -20,12 +11,16 @@
   position: relative;
 }
 
-.to-watch__movie-note {
+.to-watch__movie-cover {
+  max-width: 100%;
+}
+
+.to-watch__note {
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgb(66, 156, 24);
-  box-shadow: 0 .25rem .25rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
   border: 2px solid white;
   height: 2rem;
   width: 2rem;
@@ -33,27 +28,28 @@
   position: absolute;
   top: -0.5rem;
   right: -0.5rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-style: italic;
   font-weight: bold;
 }
 
-.to-watch__movie-cover {
-  width: 100%;
-}
-
 .to-watch__movie-title {
   text-align: left;
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
   font-style: italic;
 }
 
-.to-watch__movie-desc {
-  font-size: 0.8rem;
-  text-align: left;
+.to-watch__title {
+  padding: 1rem;
+  text-align: center;
 }
 
-.to-watch__movie-release {
-  font-size: .75rem;
+.to-watch__release-date {
+  font-size: 0.75rem;
   margin-bottom: 1rem;
+}
+
+.to-watch__desc {
+  font-size: 0.8rem;
+  text-align: left;
 }

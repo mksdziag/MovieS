@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -23,7 +23,6 @@ class App extends Component {
       movie => movie.id === movieId
     );
     targetMovie[0].my_note = Number(rating);
-    console.log(targetMovie);
     const newWantToWatchArr = this.state.wantToWatch.filter(
       movie => movie.id !== movieId
     );

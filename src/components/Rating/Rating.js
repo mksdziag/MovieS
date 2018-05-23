@@ -2,11 +2,11 @@ import React from "react";
 import "./Rating.css";
 
 const Rating = props => {
+  const { userRatingHandler } = props;
   return (
     <select
-      onChange={e => props.userRatingHandler(e)}
-      className="movie-rating__select"
-    >
+      onChange={e => userRatingHandler(e)}
+      className="movie-rating__select">
       <option>1</option>
       <option>2</option>
       <option>3</option>

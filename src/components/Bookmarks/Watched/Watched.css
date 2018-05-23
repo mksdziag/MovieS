@@ -1,4 +1,4 @@
-.watched__content {
+.watched__item {
   width: 200px;
   margin: 1rem;
   justify-content: center;
@@ -15,10 +15,10 @@
 }
 
 .watched__movie-cover:hover {
-  filter: hue-rotate(345deg)
+  filter: hue-rotate(345deg);
 }
 
-.watched__movie-note {
+.watched__note {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
   font-weight: bold;
 }
 
-.watched__movie-my-note {
+.watched__my-note {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,16 +68,13 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
 }
 
-.watched__wrapper {
-  color: white;
-}
-
-.watched__title {
+.watched__section-title {
   padding: 1rem;
   text-align: center;
 }
 
-.watched__movies-wrapper {
+.watched__list {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
