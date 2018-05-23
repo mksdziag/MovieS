@@ -8,6 +8,7 @@
   background-color: #191923;
   font-family: "Montserrat", sans-serif;
   color: white;
+  min-height: 100vh;
 }
 
 .App-logo {
