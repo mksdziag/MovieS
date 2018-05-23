@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -13,8 +13,13 @@ class App extends Component {
   };
 
   addToWantMoviesHandler = moviesArr => {
+    const newWatchedArr = moviesArr.filter(movie => movie.my_note);
+    const newWantToWatch = moviesArr.filter(movie => !movie.my_note);
     this.setState((prevState, currState) => {
-      return { wantToWatch: [...prevState.wantToWatch, ...moviesArr] };
+      return {
+        wantToWatch: [...prevState.wantToWatch, ...newWantToWatch],
+        watched: [...prevState.watched, ...newWatchedArr]
+      };
     });
   };
 
@@ -59,6 +64,9 @@ class App extends Component {
               path="/search"
               render={() => (
                 <Search
+                  userRatingHandler={(value, movieId) =>
+                    this.userRatingHandler(value, movieId)
+                  }
                   addMoviesHandler={moviesArr =>
                     this.addToWantMoviesHandler(moviesArr)
                   }

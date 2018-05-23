@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./Search.css";
+import Rating from "../Rating/Rating";
 
 class Search extends Component {
   constructor(props) {
@@ -8,8 +9,24 @@ class Search extends Component {
     this.state = {
       findedMovies: [],
       wantToWatchToAdd: [],
-      watchedToAdd: []
+      watchedToAdd: [],
+      ratedMovie: null
     };
+  }
+
+  userRatingHandler(rating, id) {
+    const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
+    ratedMovie.my_note = Number(rating);
+    console.log(ratedMovie);
+    const filteredFinded = this.state.findedMovies.filter(
+      movie => movie.id !== id
+    );
+    this.setState((prevState, nextProps) => {
+      return {
+        wantToWatchToAdd: [...prevState.wantToWatchToAdd, ratedMovie],
+        findedMovies: filteredFinded
+      };
+    });
   }
 
   searchForMoviesHandler = e => {
@@ -36,7 +53,6 @@ class Search extends Component {
     const targetMovieArr = this.state.findedMovies.filter(
       movie => movie.id === id
     );
-    targetMovieArr[0].my_note = "-";
     const filteredFinded = this.state.findedMovies.filter(
       movie => movie.id !== id
     );
@@ -80,6 +96,9 @@ class Search extends Component {
             src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
             alt=""
           />
+          <Rating
+            userRatingHandler={e => this.userRatingHandler(e.target.value, id)}
+          />
           <div>
             <h3 className="search__movie-title">{original_title}</h3>
             <p className="search__release-year">
@@ -99,9 +118,6 @@ class Search extends Component {
               onClick={() => this.wantToWatchHandler(id)}
               className="btn btn--want">
               Want to watch
-            </button>
-            <button onClick={this.rateHandler} className="btn btn--rate">
-              Rate
             </button>
           </div>
         </li>

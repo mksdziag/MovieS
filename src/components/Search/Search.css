@@ -5,12 +5,14 @@
 .search__section-title {
   text-align: center;
   padding: 1rem;
+  margin: 1rem auto;
   font-size: 1.5rem;
 }
 
 .search__input {
-  margin: 0 auto 1rem;
-  width: 300px;
+  margin: 0 auto;
+  width: 70%;
+  max-width: 400px;
   display: block;
   padding: 0.75rem 1rem;
   background-color: #3f3f5f;
@@ -27,6 +29,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-gap: 1rem;
+  position: relative;
 }
 
 .search__movie-cover {
@@ -61,6 +64,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  padding: 2rem;
 }
 
 .btn--accept-add {
@@ -71,9 +75,9 @@
   font-size: 1.05rem;
   margin: 0 0.5rem;
 }
-
+/* 
 .search__list-wrapper {
 }
 
 .search__finded-list {
-}
+} */

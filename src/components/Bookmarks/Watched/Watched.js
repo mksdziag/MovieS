@@ -1,8 +1,8 @@
 import React from "react";
 import "./Watched.css";
-import { Link, Route } from "react-router-dom";
-import Favourites from "../Favourites/Favourites";
-import MoviePage from "../../MoviePage/MoviePage";
+// import { Link, Route } from "react-router-dom";
+// import Favourites from "../Favourites/Favourites";
+// import MoviePage from "../../MoviePage/MoviePage";
 
 const watched = props => {
   const { movies } = props;

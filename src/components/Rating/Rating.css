@@ -3,11 +3,15 @@
   height: 3rem;
   width: 3rem;
   bottom: -1rem;
-  left: -.25rem;
-  border-radius: 50%;
-  background-color: gray;
+  left: -0.25rem;
+  border-radius: 500px;
+  background-color: #0b3948;
   border: 2px solid white;
   color: white;
   font-size: 1rem;
   outline: none;
+  transition: all 150ms ease-in-out;
+}
+.movie-rating__select:focus {
+  width: 6rem;
 }
