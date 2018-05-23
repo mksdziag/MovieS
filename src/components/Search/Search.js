@@ -16,14 +16,15 @@ class Search extends Component {
 
   userRatingHandler(rating, id) {
     const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
-    ratedMovie.my_note = Number(rating);
-    console.log(ratedMovie);
+    const ratedMovieNew = Object.assign({}, ratedMovie);
+
+    ratedMovieNew.my_note = Number(rating);
     const filteredFinded = this.state.findedMovies.filter(
       movie => movie.id !== id
     );
     this.setState((prevState, nextProps) => {
       return {
-        wantToWatchToAdd: [...prevState.wantToWatchToAdd, ratedMovie],
+        wantToWatchToAdd: [...prevState.wantToWatchToAdd, ratedMovieNew],
         findedMovies: filteredFinded
       };
     });
