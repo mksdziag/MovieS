@@ -15,7 +15,7 @@
 }
 
 .watched__movie-cover:hover {
-  filter: hue-rotate(345deg);
+  filter: hue-rotate(720deg);
 }
 
 .watched__note {

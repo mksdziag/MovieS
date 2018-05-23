@@ -15,8 +15,10 @@ class Search extends Component {
   }
 
   userRatingHandler(rating, id) {
+    // finded rated movie object (exactly that object)
     const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
-    const ratedMovieNew = Object.assign({}, ratedMovie);
+    //  make deep clone of finded object but to not mutate original state
+    const ratedMovieNew = { ...ratedMovie };
 
     ratedMovieNew.my_note = Number(rating);
     const filteredFinded = this.state.findedMovies.filter(
