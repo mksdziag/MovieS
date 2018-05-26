@@ -1,10 +1,11 @@
-import React from "react";
-import "./WantToWatch.css";
-import Rating from "../../Rating/Rating";
+import React from 'react';
+import { connect } from 'react-redux';
+import './WantToWatch.css';
+import Rating from '../../Rating/Rating';
 
 const wantToWatch = props => {
-  const { movies, userRatingHandler } = props;
-  const moviesToWatch = movies.map(movie => {
+  const { wantToWatchRED, userRatingHandlerRED, deleteMovieHandlerRED } = props;
+  const moviesToWatch = wantToWatchRED.map(movie => {
     const {
       id,
       poster_path,
@@ -13,16 +14,24 @@ const wantToWatch = props => {
       release_date,
       overview
     } = movie;
-    const noteBackground = { backgroundColor: "" };
+
+    let movieOverwiev = overview.split(' ');
+    movieOverwiev =
+      movieOverwiev.length > 40
+        ? movieOverwiev.slice(0, 40).join(' ') + '...'
+        : movieOverwiev.join(' ');
+
+    const noteBackground = { backgroundColor: '' };
     if (vote_average >= 7) {
-      noteBackground.backgroundColor = "#288112";
+      noteBackground.backgroundColor = '#288112';
     } else if (vote_average >= 5) {
-      noteBackground.backgroundColor = "#d17e11";
+      noteBackground.backgroundColor = '#d17e11';
     } else if (vote_average > 0) {
-      noteBackground.backgroundColor = "#d11111";
+      noteBackground.backgroundColor = '#d11111';
     } else {
-      noteBackground.backgroundColor = "rgba(128, 128, 128, 0.5)";
+      noteBackground.backgroundColor = 'rgba(128, 128, 128, 0.5)';
     }
+
     return (
       <div className="to-watch__item" key={id}>
         <div className="to-watch__cover-wrapper">
@@ -31,17 +40,22 @@ const wantToWatch = props => {
             src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
             alt="movie cover"
           />
+          <span
+            className="to-watch__delete"
+            onClick={() => deleteMovieHandlerRED(id)}>
+            &#10006;
+          </span>
           <span style={noteBackground} className="to-watch__note">
             {vote_average}
           </span>
           <Rating
-            userRatingHandler={e => userRatingHandler(e.target.value, id)}
+            userRatingHandler={e => userRatingHandlerRED(e.target.value, id)}
           />
         </div>
         <div>
           <h3 className="to-watch__movie-title">"{title}"</h3>
           <p className="to-watch__release-date">Released: {release_date}</p>
-          <p className="to-watch__desc">{overview}</p>
+          <p className="to-watch__desc">{movieOverwiev}</p>
         </div>
       </div>
     );
@@ -55,4 +69,19 @@ const wantToWatch = props => {
   );
 };
 
-export default wantToWatch;
+const mapStateToProps = state => {
+  return {
+    wantToWatchRED: state.wantToWatch,
+    watchedRED: state.watched
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    userRatingHandlerRED: (note, id) =>
+      dispatch({ type: 'USER_RATING', note: note, id: id }),
+    deleteMovieHandlerRED: id => dispatch({ type: 'DELETE_MOVIE', id: id })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(wantToWatch);

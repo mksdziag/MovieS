@@ -1,20 +1,18 @@
-import React from "react";
-import "./Watched.css";
-// import { Link, Route } from "react-router-dom";
-// import Favourites from "../Favourites/Favourites";
-// import MoviePage from "../../MoviePage/MoviePage";
+import React from 'react';
+import './Watched.css';
+import { connect } from 'react-redux';
 
 const watched = props => {
-  const { movies } = props;
-  const watchedList = movies.map(movie => {
+  const { watchedRED } = props;
+  const watchedList = watchedRED.map(movie => {
     const { id, poster_path, vote_average, my_note, title } = movie;
-    const noteBackground = { backgroundColor: "rgba(128, 128, 128, 0.5)" };
+    const noteBackground = { backgroundColor: 'rgba(128, 128, 128, 0.5)' };
     if (movie.vote_average >= 7) {
-      noteBackground.backgroundColor = "#288112";
+      noteBackground.backgroundColor = '#288112';
     } else if (movie.vote_average >= 5) {
-      noteBackground.backgroundColor = "#d17e11";
+      noteBackground.backgroundColor = '#d17e11';
     } else if (movie.vote_average > 0) {
-      noteBackground.backgroundColor = "#d11111";
+      noteBackground.backgroundColor = '#d11111';
     }
 
     return (
@@ -46,4 +44,11 @@ const watched = props => {
   );
 };
 
-export default watched;
+const mapStateToProps = state => {
+  return {
+    wantToWatchRED: state.wantToWatch,
+    watchedRED: state.watched
+  };
+};
+
+export default connect(mapStateToProps)(watched);

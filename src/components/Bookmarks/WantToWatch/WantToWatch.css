@@ -33,6 +33,24 @@
   font-weight: bold;
 }
 
+.to-watch__delete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid white;
+  transition: all 150ms ease-out;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+  cursor: pointer;
+}
+
 .to-watch__movie-title {
   text-align: left;
   margin-bottom: 0.25rem;

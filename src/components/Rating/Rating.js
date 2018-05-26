@@ -1,8 +1,7 @@
-import React from "react";
-import "./Rating.css";
+import React from 'react';
+import './Rating.css';
 
-const Rating = props => {
-  const { userRatingHandler } = props;
+const Rating = ({ userRatingHandler }) => {
   return (
     <select
       onChange={e => userRatingHandler(e)}

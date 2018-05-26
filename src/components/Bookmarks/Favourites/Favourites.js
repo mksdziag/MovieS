@@ -1,10 +1,11 @@
-import React from "react";
-import "./Favourites.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import './Favourites.css';
 
 const favourites = props => {
-  const { movies } = props;
-  const sortedWatchedByUserRating = movies.sort(
-    (a, b) => b.my_note >= a.my_note
+  const { watchedRED } = props;
+  const sortedWatchedByUserRating = watchedRED.sort(
+    (a, b) => b.my_note - a.my_note
   );
   const top3 = sortedWatchedByUserRating.slice(0, 3);
 
@@ -36,4 +37,10 @@ const favourites = props => {
   );
 };
 
-export default favourites;
+const mapStateToProps = state => {
+  return {
+    watchedRED: state.watched
+  };
+};
+
+export default connect(mapStateToProps)(favourites);

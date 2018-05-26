@@ -1,35 +1,16 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "./Search.css";
-import Rating from "../Rating/Rating";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+import './Search.css';
+import Rating from '../Rating/Rating';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      findedMovies: [],
-      wantToWatchToAdd: [],
-      watchedToAdd: [],
-      ratedMovie: null
+      findedMovies: []
     };
-  }
-
-  userRatingHandler(rating, id) {
-    // finded rated movie object (exactly that object)
-    const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
-    //  make deep clone of finded object but to not mutate original state
-    const ratedMovieNew = { ...ratedMovie };
-
-    ratedMovieNew.my_note = Number(rating);
-    const filteredFinded = this.state.findedMovies.filter(
-      movie => movie.id !== id
-    );
-    this.setState((prevState, nextProps) => {
-      return {
-        wantToWatchToAdd: [...prevState.wantToWatchToAdd, ratedMovieNew],
-        findedMovies: filteredFinded
-      };
-    });
   }
 
   searchForMoviesHandler = e => {
@@ -38,13 +19,14 @@ class Search extends Component {
   };
 
   getMovie = keyWord => {
-    const apiKey = "5c390ea5f7529cd1cce0e1069df56f5b";
-    const baseUrl = "https://api.themoviedb.org/3/";
+    const apiKey = '5c390ea5f7529cd1cce0e1069df56f5b';
+    const baseUrl = 'https://api.themoviedb.org/3/';
     const url = `${baseUrl}search/movie?api_key=${apiKey}&query=${keyWord}`;
 
     axios(url)
       .then(response => {
         const moviesArr = response.data.results;
+        moviesArr.filter(movie => movie);
         this.setState((prevState, currState) => {
           return { findedMovies: moviesArr };
         });
@@ -53,43 +35,47 @@ class Search extends Component {
   };
 
   wantToWatchHandler = id => {
-    const targetMovieArr = this.state.findedMovies.filter(
-      movie => movie.id === id
-    );
+    const targetMovie = this.state.findedMovies.find(movie => movie.id === id);
     const filteredFinded = this.state.findedMovies.filter(
       movie => movie.id !== id
     );
-
+    this.props.wantToWatchHandlerRED(targetMovie);
     this.setState((prevState, currState) => {
       return {
-        wantToWatchToAdd: [...prevState.wantToWatchToAdd, ...targetMovieArr],
         findedMovies: filteredFinded
       };
     });
   };
 
-  addToWatchedHandler = () => {
-    this.props.addMoviesHandler(this.state.wantToWatchToAdd);
-    this.setState((prevState, currState) => {
-      return { wantToWatchToAdd: [] };
+  userRatingHandler = (note, id) => {
+    const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
+    ratedMovie.my_note = note;
+    const filteredFinded = this.state.findedMovies.filter(
+      movie => movie.id !== id
+    );
+    this.setState((prevState, nextProps) => {
+      return {
+        findedMovies: [...filteredFinded]
+      };
     });
+    this.props.userRatingHandlerRED(ratedMovie);
   };
 
   render() {
-    const { findedMovies, wantToWatchToAdd } = this.state;
+    const { findedMovies } = this.state;
 
     const moviesListItems = findedMovies.map(movie => {
       const { id, poster_path, original_title, release_date, overview } = movie;
 
-      const noteBackground = { backgroundColor: "" };
+      const noteBackground = { backgroundColor: '' };
       if (movie.vote_average >= 7) {
-        noteBackground.backgroundColor = "#288112";
+        noteBackground.backgroundColor = '#288112';
       } else if (movie.vote_average >= 5) {
-        noteBackground.backgroundColor = "#d17e11";
+        noteBackground.backgroundColor = '#d17e11';
       } else if (movie.vote_average > 0) {
-        noteBackground.backgroundColor = "#d11111";
+        noteBackground.backgroundColor = '#d11111';
       } else {
-        noteBackground.backgroundColor = "rgba(128, 128, 128, 0.5)";
+        noteBackground.backgroundColor = 'rgba(128, 128, 128, 0.5)';
       }
 
       return (
@@ -108,11 +94,11 @@ class Search extends Component {
               Release Year: {release_date.substring(0, 4)};
             </p>
             <p className="search__movie-overview">
-              {overview.split(" ").length > 45
+              {overview.split(' ').length > 45
                 ? overview
-                    .split(" ")
+                    .split(' ')
                     .splice(0, 40)
-                    .join(" ") + `...`
+                    .join(' ') + `...`
                 : overview}
             </p>
           </div>
@@ -136,21 +122,6 @@ class Search extends Component {
           type="search"
           placeholder="Search now..."
         />
-        <div className="search__add-wrapper">
-          <button
-            style={
-              wantToWatchToAdd.length > 0
-                ? { backgroundColor: "#a20021" }
-                : { backgroundColor: "initial" }
-            }
-            onClick={this.addToWatchedHandler}
-            className="btn btn--accept-add">
-            Confirm add
-            <span className="search__acceped-counter">
-              ({wantToWatchToAdd.length})
-            </span>
-          </button>
-        </div>
         <div className="search__list-wrapper">
           <ul className="search__finded-list">{moviesListItems}</ul>
         </div>
@@ -158,5 +129,20 @@ class Search extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    watchedRED: state.watched,
+    wantToWatchRED: state.wantToWatch
+  };
+};
 
-export default Search;
+const mapDispatchToProps = dispatch => {
+  return {
+    userRatingHandlerRED: movieObj =>
+      dispatch({ type: 'USER_RATING_FROM_SEARCH', movie: movieObj }),
+    wantToWatchHandlerRED: movieObj =>
+      dispatch({ type: 'ADD_TO_WANT_FROM_SEARCH', movie: movieObj })
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Search);
