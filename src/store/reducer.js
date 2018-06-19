@@ -1,23 +1,24 @@
-const initaialState = {
+import * as actionTypes from "./actionTypes";
+
+const initaialState = JSON.parse(localStorage.getItem("state")) || {
   wantToWatch: [],
   watched: []
 };
 
 const reducer = (state = initaialState, action) => {
-  console.log('reducer:', action, 'state:', state);
-
   switch (action.type) {
-    case 'ADD_TO_WANT_FROM_SEARCH':
+    case actionTypes.ADD_TO_WANT_FROM_SEARCH:
       return {
         ...state,
         wantToWatch: [...state.wantToWatch, action.movie],
         watched: [...state.watched]
       };
-    case 'USER_RATING':
+    case actionTypes.USER_RATING:
       const ratedMovie = [...state.wantToWatch].find(
         movie => movie.id === action.id
       );
       ratedMovie.my_note = action.note;
+
       return {
         ...state,
         wantToWatch: [...state.wantToWatch].filter(
@@ -26,7 +27,7 @@ const reducer = (state = initaialState, action) => {
         watched: [...state.watched, ratedMovie]
       };
 
-    case 'DELETE_MOVIE':
+    case actionTypes.DELETE_MOVIE:
       return {
         ...state,
         wantToWatch: [...state.wantToWatch].filter(
@@ -34,7 +35,7 @@ const reducer = (state = initaialState, action) => {
         ),
         watched: [...state.watched]
       };
-    case 'USER_RATING_FROM_SEARCH':
+    case actionTypes.USER_RATING_FROM_SEARCH:
       return {
         ...state,
         watched: [...state.watched, action.movie],

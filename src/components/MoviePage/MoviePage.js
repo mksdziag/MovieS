@@ -1,9 +1,9 @@
 import React from "react";
 
-const moviePage = () => {
+const moviePage = ({ title }) => {
   return (
     <div>
-      <h1>To jest movie Page!!!!</h1>
+      <h1>To jest movie of {title}</h1>
     </div>
   );
 };

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-import './App.css';
-import Header from './components/Header/Header';
-import MainPage from './containers/MainPage/MainPage';
-import Search from './components/Search/Search';
+import "./App.css";
+import Header from "./components/Header/Header";
+import MainPage from "./containers/MainPage/MainPage";
+import Search from "./components/Search/Search";
 
 class App extends Component {
   render() {

@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 
-import './Search.css';
-import Rating from '../Rating/Rating';
+import "./Search.css";
+import * as actionTypes from "../../store/actionTypes";
+import { searchUrl } from "../../assets/apiConfig";
+import movieRatingColorize from "../../assets/movieRatingColorize";
+import SearchItem from "./SearchItem";
 
 class Search extends Component {
   constructor(props) {
@@ -14,16 +17,12 @@ class Search extends Component {
   }
 
   searchForMoviesHandler = e => {
-    const searchedWord = e.target.value;
-    this.getMovie(searchedWord);
+    const searchWord = e.target.value;
+    this.getMovie(searchWord);
   };
 
-  getMovie = keyWord => {
-    const apiKey = '5c390ea5f7529cd1cce0e1069df56f5b';
-    const baseUrl = 'https://api.themoviedb.org/3/';
-    const url = `${baseUrl}search/movie?api_key=${apiKey}&query=${keyWord}`;
-
-    axios(url)
+  getMovie = searchWord => {
+    axios(searchUrl(searchWord))
       .then(response => {
         const moviesArr = response.data.results;
         moviesArr.filter(movie => movie);
@@ -31,7 +30,7 @@ class Search extends Component {
           return { findedMovies: moviesArr };
         });
       })
-      .catch(err => err);
+      .catch(err => console.log(err));
   };
 
   wantToWatchHandler = id => {
@@ -65,51 +64,29 @@ class Search extends Component {
     const { findedMovies } = this.state;
 
     const moviesListItems = findedMovies.map(movie => {
-      const { id, poster_path, original_title, release_date, overview } = movie;
+      const {
+        id,
+        poster_path,
+        original_title,
+        release_date,
+        overview,
+        vote_average
+      } = movie;
 
-      const noteBackground = { backgroundColor: '' };
-      if (movie.vote_average >= 7) {
-        noteBackground.backgroundColor = '#288112';
-      } else if (movie.vote_average >= 5) {
-        noteBackground.backgroundColor = '#d17e11';
-      } else if (movie.vote_average > 0) {
-        noteBackground.backgroundColor = '#d11111';
-      } else {
-        noteBackground.backgroundColor = 'rgba(128, 128, 128, 0.5)';
-      }
+      const noteBackground = movieRatingColorize(vote_average);
 
       return (
-        <li className="search__list-item" key={id}>
-          <img
-            className="search__movie-cover"
-            src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-            alt=""
-          />
-          <Rating
-            userRatingHandler={e => this.userRatingHandler(e.target.value, id)}
-          />
-          <div>
-            <h3 className="search__movie-title">{original_title}</h3>
-            <p className="search__release-year">
-              Release Year: {release_date.substring(0, 4)};
-            </p>
-            <p className="search__movie-overview">
-              {overview.split(' ').length > 45
-                ? overview
-                    .split(' ')
-                    .splice(0, 40)
-                    .join(' ') + `...`
-                : overview}
-            </p>
-          </div>
-          <div className="search__action-buttons">
-            <button
-              onClick={() => this.wantToWatchHandler(id)}
-              className="btn btn--want">
-              Want to watch
-            </button>
-          </div>
-        </li>
+        <SearchItem
+          noteBackground={noteBackground}
+          key={id}
+          id={id}
+          poster_path={poster_path}
+          original_title={original_title}
+          release_date={release_date}
+          overview={overview}
+          userRatingHandler={(note, id) => this.userRatingHandler(note, id)}
+          wantToWatchHandler={id => this.wantToWatchHandler(id)}
+        />
       );
     });
 
@@ -129,20 +106,17 @@ class Search extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    watchedRED: state.watched,
-    wantToWatchRED: state.wantToWatch
-  };
-};
 
 const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: movieObj =>
-      dispatch({ type: 'USER_RATING_FROM_SEARCH', movie: movieObj }),
+      dispatch({ type: actionTypes.USER_RATING_FROM_SEARCH, movie: movieObj }),
     wantToWatchHandlerRED: movieObj =>
-      dispatch({ type: 'ADD_TO_WANT_FROM_SEARCH', movie: movieObj })
+      dispatch({ type: actionTypes.ADD_TO_WANT_FROM_SEARCH, movie: movieObj })
   };
 };
 
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Search);
