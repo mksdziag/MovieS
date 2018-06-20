@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Rating from "../../Rating/Rating";
 import * as actionTypes from "../../../store/actionTypes";
 
@@ -16,13 +17,17 @@ const wantToWatchItem = ({
 }) => {
   return (
     <div className="to-watch__card" key={id}>
-      <img
-        className="to-watch__movie-cover"
-        src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt="movie cover"
-      />
+      <Link to={`/movies/${id}`}>
+        <img
+          className="to-watch__movie-cover"
+          src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt="movie cover"
+        />
+      </Link>
       <div className="to-watch__details">
-        <h3 className="to-watch__movie-title">"{title}"</h3>
+        <Link className="watched__movie-title-link" to={`/movies/${id}`}>
+          <h3 className="to-watch__movie-title">"{title}"</h3>
+        </Link>
         <div className="to-watch__details-bottom">
           <div className="to-watch__details-bottom-first">
             <p className="to-watch__release-date">Released: {release_date}</p>

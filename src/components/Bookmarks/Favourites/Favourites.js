@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./Favourites.css";
+import FavouritesItem from "./FavouritesItem";
 
 const favourites = props => {
   const { watchedRED } = props;
@@ -12,23 +13,14 @@ const favourites = props => {
   const favouritesListItems = top3.map((movie, idx) => {
     const { id, poster_path, my_note, title } = movie;
     return (
-      <li className="favourites__card" key={id}>
-        <img
-          className="favourites__movie-cover"
-          src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt="movie cover"
-        />
-        <span className="favourites__my-note">
-          {" "}
-          <span className="favourites__my-note-desc">my note:</span>
-          {my_note}
-        </span>
-        <span className="favourites__place">{idx + 1}.</span>
-
-        <div>
-          <h3 className="favourites__movie-title">"{title}"</h3>
-        </div>
-      </li>
+      <FavouritesItem
+        key={id}
+        id={id}
+        poster_path={poster_path}
+        my_note={my_note}
+        idx={idx}
+        title={title}
+      />
     );
   });
 

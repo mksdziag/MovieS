@@ -44,7 +44,7 @@ const wantToWatch = props => {
     <section className="section to-watch__wrapper">
       <h2 className="section__title to-watch__title">Want to watch</h2>
       {wantToWatchRED.length > 0 ? (
-        moviesToWatch
+        <ul className="to-watch__list">{moviesToWatch}</ul>
       ) : (
         <p className="no-items-info">
           No movies on Your list...

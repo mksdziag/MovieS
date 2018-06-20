@@ -1,11 +1,23 @@
+.to-watch__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .to-watch__card {
-  width: 500px;
+  max-width: 400px;
+  width: 90%;
   margin: 1rem;
   padding: 2rem;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
   border-radius: 10px;
+}
+@media screen and (min-width: 1200px) {
+  .to-watch__card {
+    max-width: 450px;
+  }
 }
 .to-watch__movie-cover {
   height: 185px;
@@ -28,6 +40,7 @@
 }
 .to-watch__movie-title {
   margin-bottom: 1rem;
+  color: rgb(7, 30, 63);
 }
 .to-watch__details-bottom {
   margin-bottom: 1rem;

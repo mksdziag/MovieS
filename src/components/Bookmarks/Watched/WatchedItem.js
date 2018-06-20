@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../../../store/actionTypes";
 
 const watchedItem = ({
   id,
@@ -8,17 +10,20 @@ const watchedItem = ({
   my_note,
   title,
   poster_path,
-  release_date
+  release_date,
+  deleteMovieHandlerRED
 }) => {
   return (
     <div className="watched__card" key={id}>
-      <img
-        className="watched__movie-cover"
-        src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt="movie cover"
-      />
+      <Link to={`/movies/${id}`}>
+        <img
+          className="watched__movie-cover"
+          src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt="movie cover"
+        />
+      </Link>
       <div>
-        <Link to={`/movies/${id}`}>
+        <Link className="watched__movie-title-link" to={`/movies/${id}`}>
           <h3 className="watched__movie-title">
             "{title}"{" "}
             <span className="watched__movie-title-year">
@@ -39,10 +44,25 @@ const watchedItem = ({
       </div>
       <div className="watched__actions">
         <button className="btn ">share</button>
-        <button className="btn btn--delete">delete</button>
+        <button
+          className="btn btn--delete"
+          onClick={() => deleteMovieHandlerRED(id)}
+        >
+          delete
+        </button>
       </div>
     </div>
   );
 };
 
-export default watchedItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteMovieHandlerRED: id =>
+      dispatch({ type: actionTypes.DELETE_MOVIE_FROM_WATCHED, id: id })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(watchedItem);

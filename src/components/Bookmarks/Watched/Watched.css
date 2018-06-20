@@ -46,6 +46,10 @@
   font-size: 0.75rem;
 }
 
+.watched__movie-title-link {
+  text-decoration: none;
+}
+
 .watched__movie-title {
   color: rgb(7, 30, 63);
   text-align: center;

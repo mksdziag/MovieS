@@ -41,6 +41,12 @@ const reducer = (state = initaialState, action) => {
         watched: [...state.watched, action.movie],
         wantToWatch: [...state.wantToWatch]
       };
+    case actionTypes.DELETE_MOVIE_FROM_WATCHED:
+      return {
+        ...state,
+        watched: [...state.watched].filter(movie => movie.id !== action.id),
+        wantToWatch: [...state.wantToWatch]
+      };
     default:
       return state;
   }

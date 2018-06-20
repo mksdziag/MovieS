@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./MoviePage.css";
-const moviePage = ({ match, watchedMovies }) => {
-  const targetMovie = watchedMovies.find(
+const moviePage = ({ match, watchedMovies, wantToWatchMovies }) => {
+  const targetMovie = [...watchedMovies, ...wantToWatchMovies].find(
     movie => movie.id === parseFloat(match.params.id)
   );
   const { title, overview, release_date, poster_path } = targetMovie;
@@ -30,7 +30,8 @@ const moviePage = ({ match, watchedMovies }) => {
 
 const mapStateToProps = state => {
   return {
-    watchedMovies: state.watched
+    watchedMovies: state.watched,
+    wantToWatchMovies: state.wantToWatch
   };
 };
 
