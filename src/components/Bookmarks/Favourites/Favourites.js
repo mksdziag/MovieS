@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import './Favourites.css';
+import React from "react";
+import { connect } from "react-redux";
+import "./Favourites.css";
 
 const favourites = props => {
   const { watchedRED } = props;
@@ -12,16 +12,19 @@ const favourites = props => {
   const favouritesListItems = top3.map((movie, idx) => {
     const { id, poster_path, my_note, title } = movie;
     return (
-      <li className="favourites__list-item" key={id}>
-        <div className="favourites__cover-wrapper">
-          <img
-            className="favourites__movie-cover"
-            src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-            alt="movie cover"
-          />
-          <span className="favourites__my-note">{my_note}</span>
-          <span className="favourites__place">{idx + 1}.</span>
-        </div>
+      <li className="favourites__card" key={id}>
+        <img
+          className="favourites__movie-cover"
+          src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt="movie cover"
+        />
+        <span className="favourites__my-note">
+          {" "}
+          <span className="favourites__my-note-desc">my note:</span>
+          {my_note}
+        </span>
+        <span className="favourites__place">{idx + 1}.</span>
+
         <div>
           <h3 className="favourites__movie-title">"{title}"</h3>
         </div>
@@ -30,8 +33,8 @@ const favourites = props => {
   });
 
   return (
-    <section className="favourites__section-wrapper">
-      <h2 className="favourites__section-title">My top 3</h2>
+    <section className="section favourites__section-wrapper">
+      <h2 className=" section__title favourites__section-title">My top 3</h2>
       <ul className="favourites__list">{favouritesListItems}</ul>
     </section>
   );

@@ -8,7 +8,10 @@ import registerServiceWorker from "./registerServiceWorker";
 import reducer from "./store/reducer";
 import { saveState } from "./components/loadStorage";
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 store.subscribe(() => {
   saveState(store.getState());

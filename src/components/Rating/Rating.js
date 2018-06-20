@@ -1,11 +1,9 @@
-import React from 'react';
-import './Rating.css';
+import React from "react";
+import "./Rating.css";
 
 const Rating = ({ userRatingHandler }) => {
   return (
-    <select
-      onChange={e => userRatingHandler(e)}
-      className="movie-rating__select">
+    <select onChange={e => userRatingHandler(e)} className="btn btn--select">
       <option>1</option>
       <option>2</option>
       <option>3</option>

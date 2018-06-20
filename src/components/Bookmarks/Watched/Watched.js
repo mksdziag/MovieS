@@ -1,15 +1,21 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import "./Watched.css";
 import { connect } from "react-redux";
 import WatchedItem from "./WatchedItem";
 import movieRatingColorize from "../../../assets/movieRatingColorize";
-import MoviePage from "../../MoviePage/MoviePage";
+import { withRouter } from "react-router-dom";
 
 const watched = props => {
   const { watchedRED } = props;
   const watchedList = watchedRED.map(movie => {
-    const { id, poster_path, vote_average, my_note, title } = movie;
+    const {
+      id,
+      poster_path,
+      vote_average,
+      my_note,
+      title,
+      release_date
+    } = movie;
     const noteBackground = movieRatingColorize(vote_average);
 
     return (
@@ -21,16 +27,16 @@ const watched = props => {
         my_note={my_note}
         title={title}
         poster_path={poster_path}
+        release_date={release_date}
       />
     );
   });
 
   return (
-    <div className="watched__section-wrapper">
-      <h2 className="watched__section-title">Watched movies</h2>
+    <section className="section watched__section-wrapper">
+      <h2 className="section__title watched__section-title">Watched movies</h2>
       <ul className="watched__list">{watchedList}</ul>
-      <Route path="/moviePage" component={MoviePage} />
-    </div>
+    </section>
   );
 };
 
@@ -41,4 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(watched);
+export default withRouter(connect(mapStateToProps)(watched));

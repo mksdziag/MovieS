@@ -5,9 +5,8 @@
 }
 
 .App {
-  background-color: #191923;
   font-family: "Montserrat", sans-serif;
-  color: white;
+  color: rgb(34, 60, 97);
   min-height: 100vh;
 }
 
@@ -17,7 +16,6 @@
 }
 
 .App-header {
-  background-color: #222;
   height: 150px;
   padding: 20px;
 }
@@ -32,14 +30,62 @@
 
 /* Utilities and reusable elements */
 
+.section {
+  min-height: 20rem;
+  position: relative;
+}
+
+.section__title {
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(7, 30, 63, 0.15);
+  display: inline-block;
+  margin: 1rem 0 1rem 2rem;
+}
+
 .btn {
-  padding: 0.5rem 1rem;
-  margin: 0.5rem;
   font-size: 0.85rem;
-  border: 1px solid white;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  color: rgba(7, 30, 63, 0.45);
   background-color: transparent;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 150ms ease-out;
+  border: none;
+  border-bottom: 1px solid rgba(7, 30, 63, 0.15);
+  transition: text-shadow 200ms ease-in-out, box-shadow 200ms ease-in-out;
   cursor: pointer;
+  text-align: center;
+}
+.btn-card {
+  width: 40%;
+}
+.btn:hover {
+  text-shadow: 0 0.25rem 0.75rem rgba(34, 60, 97, 0.2);
+  box-shadow: 0 0.15rem 0.75rem rgba(34, 60, 97, 0.2);
+}
+.btn--delete {
+  width: 40%;
+  color: rgb(207, 60, 60);
+}
+
+.btn--select {
+  width: 40%;
+  margin: 0 1rem;
+  outline: none;
+  transition: all 150ms ease-in-out;
+}
+
+.no-items-info {
+  position: absolute;
+  font-size: 1.25rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 200;
+  color: rgba(7, 30, 63, 0.45);
+}
+.no-items-info__link {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 1rem;
+  border-bottom: 1px solid rgba(7, 30, 63, 0.45);
 }

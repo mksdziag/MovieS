@@ -15,30 +15,36 @@ const wantToWatchItem = ({
   userRatingHandlerRED
 }) => {
   return (
-    <div className="to-watch__item" key={id}>
-      <div className="to-watch__cover-wrapper">
-        <img
-          className="to-watch__movie-cover"
-          src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt="movie cover"
-        />
+    <div className="to-watch__card" key={id}>
+      <img
+        className="to-watch__movie-cover"
+        src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
+        alt="movie cover"
+      />
+      <div className="to-watch__details">
+        <h3 className="to-watch__movie-title">"{title}"</h3>
+        <div className="to-watch__details-bottom">
+          <div className="to-watch__details-bottom-first">
+            <p className="to-watch__release-date">Released: {release_date}</p>
+            <div style={noteBackground} className="to-watch__rating">
+              <span className="to-watch__rating-desc">average:</span>{" "}
+              {vote_average}
+            </div>
+          </div>
+          <p className="to-watch__desc">{movieOverwiev}</p>
+        </div>
+      </div>
+      <div className=" to-watch__actions">
         <span
-          className="to-watch__delete"
+          className="btn btn--delete"
           onClick={() => deleteMovieHandlerRED(id)}
         >
-          &#10006;
+          delete
         </span>
-        <span style={noteBackground} className="to-watch__note">
-          {vote_average}
-        </span>
+
         <Rating
           userRatingHandler={e => userRatingHandlerRED(e.target.value, id)}
         />
-      </div>
-      <div>
-        <h3 className="to-watch__movie-title">"{title}"</h3>
-        <p className="to-watch__release-date">Released: {release_date}</p>
-        <p className="to-watch__desc">{movieOverwiev}</p>
       </div>
     </div>
   );

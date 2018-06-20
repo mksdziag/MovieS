@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./WantToWatch.css";
 import WantToWatchItem from "./WantToWatchItem";
@@ -40,10 +41,19 @@ const wantToWatch = props => {
   });
 
   return (
-    <div className="to-watch__wrapper">
-      <h2 className="to-watch__title">Want to watch</h2>
-      {moviesToWatch}
-    </div>
+    <section className="section to-watch__wrapper">
+      <h2 className="section__title to-watch__title">Want to watch</h2>
+      {wantToWatchRED.length > 0 ? (
+        moviesToWatch
+      ) : (
+        <p className="no-items-info">
+          No movies on Your list...
+          <Link className="no-items-info__link" to="/search">
+            Search for more
+          </Link>
+        </p>
+      )}
+    </section>
   );
 };
 

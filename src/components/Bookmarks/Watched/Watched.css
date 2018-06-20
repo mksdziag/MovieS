@@ -1,76 +1,66 @@
-.watched__item {
-  width: 200px;
+.watched__card {
+  width: 300px;
   margin: 1rem;
+  padding: 2rem 1rem;
   justify-content: center;
   align-items: center;
-}
-
-.watched__cover-wrapper {
-  position: relative;
+  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
+  border-radius: 10px;
 }
 
 .watched__movie-cover {
-  width: 100%;
-  transition: all 150ms ease-out;
+  height: 185px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10%;
+  margin-bottom: 1rem;
 }
 
 .watched__movie-cover:hover {
-  filter: hue-rotate(720deg);
 }
 
-.watched__note {
+.watched__ratings {
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
-  border: 2px solid white;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  font-size: 0.8rem;
-  font-style: italic;
-  font-weight: bold;
+  font-size: 1.5rem;
+}
+.watched__rating {
+  padding: 1rem;
+  width: 50%;
+  text-align: center;
+}
+.watched__rating-desc {
+  display: block;
+  font-size: 0.75rem;
 }
 
 .watched__my-note {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #05a8aa;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
-  border: 2px solid white;
-  height: 3.25rem;
-  width: 3.25rem;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -0.5rem;
-  z-index: 2;
-  left: -0.5rem;
-  font-size: 1.15rem;
-  font-style: italic;
-  font-weight: bold;
-  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  width: 50%;
+  color: rgb(7, 30, 63);
+}
+
+.watched__my-note-desc {
+  display: block;
+  font-size: 0.75rem;
 }
 
 .watched__movie-title {
-  font-size: 1rem;
+  color: rgb(7, 30, 63);
   text-align: center;
-  background-color: #a20021;
-  position: relative;
-  transform: translateY(-50%);
+  display: block;
   margin: 0 auto;
-  padding: 0.5rem;
-  width: 75%;
-  border-radius: 5px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 2rem;
+  transition: box-shadow 200ms ease-in-out;
+}
+.watched__movie-title:hover {
+  box-shadow: 0 0.15rem 0.5rem rgba(34, 60, 97, 0.2);
 }
 
-.watched__section-title {
-  padding: 1rem;
-  text-align: center;
+.watched__actions {
+  display: flex;
+  justify-content: space-around;
 }
 
 .watched__list {
@@ -78,4 +68,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.watched__movie-title-year {
+  color: rgba(7, 30, 63, 0.25);
+  font-weight: 200;
+  font-size: 0.85em;
+  display: block;
 }
