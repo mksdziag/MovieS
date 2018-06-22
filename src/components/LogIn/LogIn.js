@@ -27,7 +27,6 @@ class LogIn extends Component {
           this.state.userPassword
         )
         .catch(function(error) {
-          console.log(this);
           this.setState({ loginError: true, errorMessage: error.message });
         });
     } else {
