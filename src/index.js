@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import reducer from "./store/reducer";
-import { saveState } from "./components/loadStorage";
+import { saveState } from "./store/loadStorage";
 
 const store = createStore(
   reducer,

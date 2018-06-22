@@ -1,0 +1,40 @@
+.form {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 3rem 2rem;
+  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
+}
+.input {
+  display: block;
+  font-size: 1.25rem;
+  margin: 1rem auto;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  color: white;
+  border-bottom: 1px solid rgba(7, 30, 63, 0.15);
+  border: none;
+  background-color: rgb(7, 30, 63);
+  max-width: 400px;
+  width: 100%;
+}
+
+.btn--input {
+  padding: 0.75rem 2rem;
+  margin: 0 auto 2rem;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.log-in-switch {
+}
+.log-in-switch__info {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.btn--switch {
+  width: 50%;
+  max-width: 400px;
+  display: block;
+  text-decoration: none;
+}
