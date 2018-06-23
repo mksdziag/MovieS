@@ -1,10 +1,28 @@
 import * as actionTypes from "./actionTypes";
+import { db } from "../assets/firebaseConfig";
+// JSON.parse(localStorage.getItem("state")) ||
 
-const initaialState = JSON.parse(localStorage.getItem("state")) || {
+let initaialState = JSON.parse(localStorage.getItem("state")) || {
   wantToWatch: [],
   watched: []
 };
 
+// const docRef = db.collection("users").doc("maks");
+
+// const fetcehstate = docRef
+//   .get()
+//   .then(function(doc) {
+//     if (doc.exists) {
+//       let fstate = doc.data().state;
+//       // console.log(fstate);
+//       return fstate;
+//     }
+//   })
+//   .catch(function(error) {
+//     console.log("Error getting document:", error);
+//   });
+
+// console.log(fetcehstate);
 const reducer = (state = initaialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_WANT_FROM_SEARCH:
