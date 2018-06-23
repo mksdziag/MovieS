@@ -8,11 +8,9 @@
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
 }
 
-.movie-card__small-title {
-  display: inline-block;
-  padding: 0.5rem;
+.movie-card__back {
+  font-size: 1.5rem;
   color: #ececec;
-  border-bottom: 1px solid #ececec;
 }
 .movie-card__cover-spot {
   flex-basis: 50%;

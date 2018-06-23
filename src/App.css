@@ -35,13 +35,6 @@
   position: relative;
 }
 
-.section__title {
-  font-size: 2rem;
-  border-bottom: 1px solid rgba(7, 30, 63, 0.15);
-  display: inline-block;
-  margin: 1rem 0 1rem 2rem;
-}
-
 .btn {
   font-size: 0.85rem;
   border-radius: 3px;

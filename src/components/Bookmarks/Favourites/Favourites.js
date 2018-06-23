@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./Favourites.css";
 import FavouritesItem from "./FavouritesItem";
+import SectionTitle from "../../UiElements/SectionTitle";
 
 const favourites = props => {
   const { watchedRED } = props;
@@ -11,22 +12,13 @@ const favourites = props => {
   const top3 = sortedWatchedByUserRating.slice(0, 3);
 
   const favouritesListItems = top3.map((movie, idx) => {
-    const { id, poster_path, my_note, title } = movie;
-    return (
-      <FavouritesItem
-        key={id}
-        id={id}
-        poster_path={poster_path}
-        my_note={my_note}
-        idx={idx}
-        title={title}
-      />
-    );
+    const { id } = movie;
+    return <FavouritesItem key={id} idx={idx} {...movie} />;
   });
 
   return (
     <section className="section favourites__section-wrapper">
-      <h2 className=" section__title favourites__section-title">My top 3</h2>
+      <SectionTitle title="My favourites" />
       <ul className="favourites__list">{favouritesListItems}</ul>
     </section>
   );

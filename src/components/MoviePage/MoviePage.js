@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fontawesome from "@fortawesome/react-fontawesome";
+import backIcon from "@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft";
+
 import "./MoviePage.css";
-const moviePage = ({ match, watchedMovies, wantToWatchMovies }) => {
+const moviePage = ({ history, match, watchedMovies, wantToWatchMovies }) => {
   const targetMovie = [...watchedMovies, ...wantToWatchMovies].find(
     movie => movie.id === parseFloat(match.params.id)
   );
@@ -15,7 +18,12 @@ const moviePage = ({ match, watchedMovies, wantToWatchMovies }) => {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500${poster_path})`
           }}
         >
-          <span className="movie-card__small-title">{title}</span>
+          <button
+            className="btn movie-card__back"
+            onClick={() => history.push("/")}
+          >
+            <Fontawesome icon={backIcon} />
+          </button>
         </div>
         <div className="movie-card__overview-wrapper">
           <h4 className="movie-card__release-date">Released: {release_date}</h4>
