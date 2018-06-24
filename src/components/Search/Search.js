@@ -3,10 +3,10 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import "./Search.css";
-import * as actionTypes from "../../store/actionTypes";
 import { searchUrl } from "../../assets/apiConfig";
 import movieRatingColorize from "../../assets/movieRatingColorize";
 import SearchItem from "./SearchItem";
+import { userRatingFromSearch, addToWantToWatch } from "../../store/actions";
 
 class Search extends Component {
   constructor(props) {
@@ -64,26 +64,15 @@ class Search extends Component {
     const { findedMovies } = this.state;
 
     const moviesListItems = findedMovies.map(movie => {
-      const {
-        id,
-        poster_path,
-        original_title,
-        release_date,
-        overview,
-        vote_average
-      } = movie;
+      const { id, vote_average } = movie;
 
       const noteBackground = movieRatingColorize(vote_average);
 
       return (
         <SearchItem
-          noteBackground={noteBackground}
           key={id}
-          id={id}
-          poster_path={poster_path}
-          original_title={original_title}
-          release_date={release_date}
-          overview={overview}
+          {...movie}
+          noteBackground={noteBackground}
           userRatingHandler={(note, id) => this.userRatingHandler(note, id)}
           wantToWatchHandler={id => this.wantToWatchHandler(id)}
         />
@@ -109,10 +98,8 @@ class Search extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    userRatingHandlerRED: movieObj =>
-      dispatch({ type: actionTypes.USER_RATING_FROM_SEARCH, movie: movieObj }),
-    wantToWatchHandlerRED: movieObj =>
-      dispatch({ type: actionTypes.ADD_TO_WANT_FROM_SEARCH, movie: movieObj })
+    userRatingHandlerRED: movieObj => dispatch(userRatingFromSearch(movieObj)),
+    wantToWatchHandlerRED: movieObj => dispatch(addToWantToWatch(movieObj))
   };
 };
 

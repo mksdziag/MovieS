@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Rating from "../../Rating/Rating";
-import * as actionTypes from "../../../store/actionTypes";
+import { userRating, deleteMovie } from "../../../store/actions";
 
 const wantToWatchItem = ({
   id,
@@ -57,10 +57,8 @@ const wantToWatchItem = ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    userRatingHandlerRED: (note, id) =>
-      dispatch({ type: actionTypes.USER_RATING, note: note, id: id }),
-    deleteMovieHandlerRED: id =>
-      dispatch({ type: actionTypes.DELETE_MOVIE, id: id })
+    userRatingHandlerRED: (note, id) => dispatch(userRating(note, id)),
+    deleteMovieHandlerRED: id => dispatch(deleteMovie(id))
   };
 };
 

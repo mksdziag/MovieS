@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import { db } from "../assets/firebaseConfig";
 // JSON.parse(localStorage.getItem("state")) ||
 
-let initaialState = JSON.parse(localStorage.getItem("state")) || {
+let initaialState = {
   wantToWatch: [],
   watched: []
 };
@@ -65,6 +65,8 @@ const reducer = (state = initaialState, action) => {
         watched: [...state.watched].filter(movie => movie.id !== action.id),
         wantToWatch: [...state.wantToWatch]
       };
+    case actionTypes.FETCH_STATE:
+      return action.newState;
     default:
       return state;
   }

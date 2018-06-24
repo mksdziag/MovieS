@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -7,9 +8,15 @@ import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";
 import MoviePage from "./components/MoviePage/MoviePage";
 import LogIn from "./components/LogIn/LogIn";
+import { fetchStateFromFirestore } from "./store/actions";
+import { db } from "./assets/firebaseConfig";
 
 class App extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("cdidmount");
+    this.props.fetchStateFromFirestoreRED();
+    // async const statefromFirebase = await
+  }
 
   render() {
     return (
@@ -30,4 +37,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchStateFromFirestoreRED: () => dispatch(fetchStateFromFirestore())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);

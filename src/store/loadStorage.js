@@ -20,7 +20,5 @@ export const saveState = state => {
       .set({
         state
       });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };

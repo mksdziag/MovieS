@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actionTypes from "../../../store/actionTypes";
+import { deleteMovieFromWatched } from "../../../store/actions";
 
 const watchedItem = ({
   id,
@@ -57,8 +57,7 @@ const watchedItem = ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteMovieHandlerRED: id =>
-      dispatch({ type: actionTypes.DELETE_MOVIE_FROM_WATCHED, id: id })
+    deleteMovieHandlerRED: id => dispatch(deleteMovieFromWatched(id))
   };
 };
 
