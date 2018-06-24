@@ -4,7 +4,8 @@ import { db } from "../assets/firebaseConfig";
 
 let initaialState = {
   wantToWatch: [],
-  watched: []
+  watched: [],
+  user: ""
 };
 
 // const docRef = db.collection("users").doc("maks");
@@ -66,6 +67,7 @@ const reducer = (state = initaialState, action) => {
         wantToWatch: [...state.wantToWatch]
       };
     case actionTypes.FETCH_STATE:
+      console.log(action.newState);
       return action.newState;
     default:
       return state;

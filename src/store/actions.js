@@ -31,7 +31,7 @@ export const fetchStateFromFirestore = () => async dispatch => {
     .then(doc => {
       return dispatch({
         type: actionTypes.FETCH_STATE,
-        newState: doc.data().state.state
+        newState: doc.data().state
       });
     });
 };
