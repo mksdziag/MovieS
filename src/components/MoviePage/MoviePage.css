@@ -1,60 +1,67 @@
 .movie-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 500px;
   width: 85%;
   margin: 3rem auto;
   background-color: white;
   color: rgb(7, 30, 63);
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
 }
 
 .movie-card__back {
   font-size: 1.5rem;
   color: #ececec;
 }
+
 .movie-card__cover-spot {
-  width: 100%;
-  padding: 1rem;
   min-height: 300px;
+  width: 100%;
+  max-width: 550px;
+  padding: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .movie-card__release-date {
-  text-align: right;
   position: absolute;
   top: 1rem;
   right: 1rem;
   color: #ececec;
+  text-align: right;
 }
+
 .movie-card__title {
-  position: relative;
   margin: 2rem 0;
+  position: relative;
 }
+
 .movie-card__overview-wrapper {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  padding: 1rem;
 }
+
 .movie-card__overview {
   padding: 0 1rem;
   margin-bottom: 2rem;
   line-height: 1.75rem;
 }
+
 .btn--secondary {
   padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #ececec;
   background-color: rgb(7, 30, 63);
   border: none;
-  margin: 1rem;
-  text-transform: uppercase;
-  font-size: 1rem;
-  color: #ececec;
   border-radius: 2px;
-  cursor: pointer;
   transition: box-shadow 200ms ease-in-out;
+  cursor: pointer;
 }
 
 .btn--secondary:hover {

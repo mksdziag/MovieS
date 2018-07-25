@@ -10,55 +10,41 @@
   min-height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  height: 150px;
-  padding: 20px;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 /* Utilities and reusable elements */
 
 .section {
-  min-height: 20rem;
   position: relative;
+  min-height: 20rem;
 }
 
 .btn {
-  font-size: 0.85rem;
-  border-radius: 3px;
   padding: 0.5rem 1rem;
-  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.85rem;
   color: rgba(7, 30, 63, 0.45);
+  text-transform: uppercase;
   background-color: transparent;
   border: none;
+  border-radius: 3px;
   border-bottom: 1px solid rgba(7, 30, 63, 0.15);
   transition: text-shadow 200ms ease-in-out, box-shadow 200ms ease-in-out;
   cursor: pointer;
-  text-align: center;
 }
+
 .btn-card {
   width: 40%;
 }
+
 .btn:hover {
   text-shadow: 0 0.25rem 0.75rem rgba(34, 60, 97, 0.2);
   box-shadow: 0 0.15rem 0.75rem rgba(34, 60, 97, 0.2);
 }
+
 .btn--delete {
   width: 40%;
   color: rgb(207, 60, 60);
 }
+
 .btn--success {
   color: rgb(56, 121, 67);
 }
@@ -72,17 +58,17 @@
 
 .no-items-info {
   position: absolute;
-  font-size: 1.25rem;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
   font-weight: 200;
   color: rgba(7, 30, 63, 0.45);
+  transform: translate(-50%, -50%);
 }
+
 .no-items-info__link {
   display: block;
   color: inherit;
-
   text-decoration: underline;
 }
 

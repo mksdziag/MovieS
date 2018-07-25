@@ -1,19 +1,18 @@
 .watched__card {
-  width: 300px;
-  margin: 1rem;
-  padding: 2rem 1rem;
   justify-content: center;
-  align-items: center;
-  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
+  width: 300px;
+  padding: 2rem 1rem;
+  margin: 1rem;
   border-radius: 10px;
+  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
 }
 
 .watched__movie-cover {
+  display: block;
   height: 185px;
   margin: 0 auto;
-  display: block;
-  border-radius: 10%;
   margin-bottom: 1rem;
+  border-radius: 10%;
 }
 
 .watched__movie-cover:hover {
@@ -25,8 +24,8 @@
   font-size: 1.5rem;
 }
 .watched__rating {
-  padding: 1rem;
   width: 50%;
+  padding: 1rem;
   text-align: center;
 }
 .watched__rating-desc {
@@ -35,9 +34,9 @@
 }
 
 .watched__my-note {
+  width: 50%;
   padding: 1rem;
   text-align: center;
-  width: 50%;
   color: rgb(7, 30, 63);
 }
 
@@ -51,11 +50,11 @@
 }
 
 .watched__movie-title {
-  color: rgb(7, 30, 63);
-  text-align: center;
-  display: block;
   margin: 0 auto;
+  display: block;
   padding: 0.5rem 2rem;
+  text-align: center;
+  color: rgb(7, 30, 63);
   transition: box-shadow 200ms ease-in-out;
 }
 .watched__movie-title:hover {
@@ -68,15 +67,15 @@
 }
 
 .watched__list {
-  list-style: none;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .watched__movie-title-year {
-  color: rgba(7, 30, 63, 0.25);
-  font-weight: 200;
-  font-size: 0.85em;
   display: block;
+  font-size: 0.85em;
+  font-weight: 200;
+  color: rgba(7, 30, 63, 0.25);
 }

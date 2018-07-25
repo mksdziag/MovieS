@@ -1,49 +1,49 @@
 .favourites__list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   list-style: none;
 }
 
 .favourites__card {
-  margin: 3rem 1rem;
-  border-radius: 10px;
+  position: relative;
   width: 400px;
   padding: 2rem;
+  margin: 3rem 1rem;
+  border-radius: 10px;
   box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
-  position: relative;
 }
 
 .favourites__movie-cover {
-  height: 200px;
-  border-radius: 5px;
-  margin: 0 auto 1rem;
   display: block;
+  height: 200px;
+  margin: 0 auto 1rem;
+  border-radius: 5px;
 }
 .favourites__my-note-desc {
-  font-weight: 200;
-  font-size: 0.85rem;
-  border-bottom: 1px solid #d17e11;
-  margin-right: 0.5rem;
   display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 200;
   font-style: italic;
+  border-bottom: 1px solid #d17e11;
 }
 
 .favourites__my-note {
   position: absolute;
-  font-size: 2rem;
-  font-weight: 700;
   top: 1rem;
   right: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
   color: #d17e11;
 }
 
 .favourites__place {
-  font-size: 4rem;
   position: absolute;
   top: -2.5rem;
   left: -0.5rem;
+  font-size: 4rem;
   font-weight: bold;
   font-family: "Merienda", cursive;
   font-style: italic;
@@ -51,11 +51,11 @@
 }
 
 .favourites__movie-title {
-  font-size: 1.5rem;
-  text-align: center;
   display: block;
-  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5rem;
   color: rgb(7, 30, 63);
+  border-radius: 5px;
 }
 
 .favourites__section-wrapper {

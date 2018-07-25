@@ -1,18 +1,16 @@
 .to-watch__list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .to-watch__card {
-  max-width: 400px;
   width: 90%;
-  margin: 1rem;
+  max-width: 400px;
   padding: 2rem;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
+  margin: 1rem;
   border-radius: 10px;
+  box-shadow: 0 0.75rem 2rem rgba(34, 60, 97, 0.2);
 }
 @media screen and (min-width: 1200px) {
   .to-watch__card {
@@ -20,16 +18,15 @@
   }
 }
 .to-watch__movie-cover {
+  display: block;
   height: 185px;
   margin: 0 auto;
-  display: block;
-  border-radius: 10%;
   margin-bottom: 1rem;
+  border-radius: 10%;
 }
 .to-watch__actions {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   align-items: center;
   font-size: 1.5rem;
 }
@@ -54,13 +51,13 @@
 
 .to-watch__release-date {
   margin: 0 1rem;
-  font-size: 0.85rem;
   margin-bottom: 1rem;
+  font-size: 0.85rem;
 }
 .to-watch__rating {
+  display: inline-block;
   margin: 0 1rem;
   margin-bottom: 1rem;
-  display: inline-block;
 }
 
 .to-watch__rating-desc {

@@ -15,13 +15,10 @@ const moviePage = ({ history, match, watchedMovies, wantToWatchMovies }) => {
         <div
           className="movie-card__cover-spot"
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/w500${poster_path})`
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500${poster_path})`,
           }}
         >
-          <button
-            className="btn movie-card__back"
-            onClick={() => history.push("/")}
-          >
+          <button className="btn movie-card__back" onClick={() => history.push("/")}>
             <Fontawesome icon={backIcon} />
           </button>
         </div>
@@ -39,7 +36,7 @@ const moviePage = ({ history, match, watchedMovies, wantToWatchMovies }) => {
 const mapStateToProps = state => {
   return {
     watchedMovies: state.watched,
-    wantToWatchMovies: state.wantToWatch
+    wantToWatchMovies: state.wantToWatch,
   };
 };
 

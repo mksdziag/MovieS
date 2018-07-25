@@ -1,6 +1,4 @@
-import { db } from "../assets/firebaseConfig";
-
-export const loadStorage = () => {
+export const loadStateFromLocal = () => {
   try {
     const serializedState = localStorage.getItem("state");
     if (serializedState === null) {
@@ -11,14 +9,10 @@ export const loadStorage = () => {
     return undefined;
   }
 };
-export const saveState = state => {
+
+export const saveStateToLocal = state => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("state", serializedState);
-    db.collection("users")
-      .doc("maks")
-      .set({
-        state
-      });
   } catch (err) {}
 };

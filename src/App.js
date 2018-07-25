@@ -9,15 +9,8 @@ import Search from "./components/Search/Search";
 import MoviePage from "./components/MoviePage/MoviePage";
 import LogIn from "./components/LogIn/LogIn";
 import { fetchStateFromFirestore } from "./store/actions";
-import { db } from "./assets/firebaseConfig";
 
 class App extends Component {
-  componentDidMount() {
-    console.log("cdidmount");
-    this.props.fetchStateFromFirestoreRED();
-    // async const statefromFirebase = await
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -39,7 +32,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStateFromFirestoreRED: () => dispatch(fetchStateFromFirestore())
+    fetchStateFromFirestoreRED: () => dispatch(fetchStateFromFirestore()),
   };
 };
 
