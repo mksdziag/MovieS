@@ -6,9 +6,7 @@ import SectionTitle from "../../UiElements/SectionTitle";
 
 const favourites = props => {
   const { watchedRED } = props;
-  const sortedWatchedByUserRating = watchedRED.sort(
-    (a, b) => b.my_note - a.my_note
-  );
+  const sortedWatchedByUserRating = watchedRED.sort((a, b) => b.my_note - a.my_note);
   const top3 = sortedWatchedByUserRating.slice(0, 3);
 
   const favouritesListItems = top3.map((movie, idx) => {
@@ -18,7 +16,7 @@ const favourites = props => {
 
   return (
     <section className="section favourites__section-wrapper">
-      <SectionTitle title="My favourites" />
+      <SectionTitle title="Highest rated" />
       <ul className="favourites__list">{favouritesListItems}</ul>
     </section>
   );
@@ -26,7 +24,7 @@ const favourites = props => {
 
 const mapStateToProps = state => {
   return {
-    watchedRED: state.watched
+    watchedRED: state.watched,
   };
 };
 
