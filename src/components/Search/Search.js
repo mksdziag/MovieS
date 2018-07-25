@@ -25,11 +25,9 @@ class Search extends Component {
   getMovies = searchWord => {
     axios(searchUrl(searchWord))
       .then(response => {
-        const moviesArr = response.data.results;
-        moviesArr.filter(movie => movie);
-        this.setState((prevState, currState) => {
-          return { findedMovies: moviesArr };
-        });
+        const searchResults = response.data.results;
+
+        this.setState({ findedMovies: searchResults });
       })
       .catch(err => console.log(err));
   };
