@@ -26,7 +26,6 @@ class Search extends Component {
     axios(searchUrl(searchWord))
       .then(response => {
         const searchResults = response.data.results;
-
         this.setState({ findedMovies: searchResults });
       })
       .catch(err => console.log(err));
