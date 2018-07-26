@@ -8,6 +8,7 @@ import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";
 import MoviePage from "./components/MoviePage/MoviePage";
 import LogIn from "./components/LogIn/LogIn";
+import Trending from "./components/Trending/Trending";
 import { fetchStateFromFirestore } from "./store/actions";
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
               <Route path="/" exact component={MainPage} />
               <Route path="/search" component={Search} />
               <Route path="/auth" component={LogIn} />
+              <Route path="/trending" component={Trending} />
               <Route path="/movies/:id" component={MoviePage} />
             </Switch>
           </main>

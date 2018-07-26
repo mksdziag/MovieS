@@ -3,19 +3,26 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
-import "./Search.css";
+import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
 import { searchUrl } from "../../assets/apiConfig";
+
+import "./Search.css";
+
 import movieRatingColorize from "../../assets/movieRatingColorize";
 import SearchItem from "./SearchItem";
-import { userRatingFromSearch, addToWantToWatch } from "../../store/actions";
 import SimpleModal from "../UiElements/Modals/SimpleModal";
 
 class Search extends Component {
-  state = {
-    findedMovies: [],
-    alertMessage: "",
-    isModalActive: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      findedMovies: [],
+      currentWatched: this.props.watchedRED,
+      currentWantToWatch: this.props.wantToWatchRED,
+      alertMessage: "",
+      isModalActive: false,
+    };
+  }
 
   searchForMoviesHandler = e => {
     const searchWord = e.target.value;
@@ -32,12 +39,13 @@ class Search extends Component {
   };
 
   wantToWatchHandler = id => {
-    const currentWantToWatch = this.props.wantToWatchRED;
-    const isOnWantToWatch = currentWantToWatch.find(movie => movie.id === id);
+    const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
+    const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
 
     if (isOnWantToWatch) {
       this.showAlertInfo("Ten film jest już na Twojej liście do obejrzenia");
-      return;
+    } else if (isAlreadyRated) {
+      this.showAlertInfo("Już obejrzałes i oceniłeś ten film.");
     } else {
       const targetMovie = this.state.findedMovies.find(movie => movie.id === id);
       this.props.wantToWatchHandlerRED(targetMovie);
@@ -51,12 +59,22 @@ class Search extends Component {
   };
 
   userRatingHandler = (note, id) => {
-    const currentWatched = this.props.watchedRED;
-    const isAlreadyRated = currentWatched.find(movie => movie.id === id);
-
+    const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
+    const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
     if (isAlreadyRated) {
       this.showAlertInfo("Już oceniłeś ten film.");
-      return;
+    } else if (isOnWantToWatch) {
+      this.props.deleteMovieHandlerRED(id);
+      // ocen film
+      const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
+      ratedMovie.my_note = note;
+      this.props.userRatingHandlerRED(ratedMovie);
+      this.setState(prevState => {
+        const filteredFinded = prevState.findedMovies.filter(movie => movie.id !== id);
+        return {
+          findedMovies: [...filteredFinded],
+        };
+      });
     } else {
       const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
       ratedMovie.my_note = note;
@@ -142,6 +160,7 @@ const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: movieObj => dispatch(userRatingFromSearch(movieObj)),
     wantToWatchHandlerRED: movieObj => dispatch(addToWantToWatch(movieObj)),
+    deleteMovieHandlerRED: id => dispatch(deleteMovie(id)),
   };
 };
 
