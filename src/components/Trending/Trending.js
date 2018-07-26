@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import SectionTitle from "../UiElements/SectionTitle";
 
 class Trending extends Component {

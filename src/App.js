@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.css";
+
 import Header from "./components/Header/Header";
 import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";

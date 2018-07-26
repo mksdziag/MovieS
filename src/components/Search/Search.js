@@ -17,6 +17,8 @@ class Search extends Component {
     super(props);
     this.state = {
       findedMovies: [],
+      addedThisTime: [],
+      ratedThisTime: [],
       currentWatched: this.props.watchedRED,
       currentWantToWatch: this.props.wantToWatchRED,
       alertMessage: "",
@@ -26,10 +28,10 @@ class Search extends Component {
 
   searchForMoviesHandler = e => {
     const searchWord = e.target.value;
-    this.getMovies(searchWord);
+    this.getSearchResults(searchWord);
   };
 
-  getMovies = searchWord => {
+  getSearchResults = searchWord => {
     axios(searchUrl(searchWord))
       .then(response => {
         const searchResults = response.data.results;
@@ -41,8 +43,9 @@ class Search extends Component {
   wantToWatchHandler = id => {
     const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
     const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
+    const wasAddedThisTime = this.state.addedThisTime.find(movie => movie.id === id);
 
-    if (isOnWantToWatch) {
+    if (isOnWantToWatch || wasAddedThisTime) {
       this.showAlertInfo("Ten film jest już na Twojej liście do obejrzenia");
     } else if (isAlreadyRated) {
       this.showAlertInfo("Już obejrzałes i oceniłeś ten film.");
@@ -53,6 +56,7 @@ class Search extends Component {
         const filteredFinded = prevState.findedMovies.filter(movie => movie.id !== id);
         return {
           findedMovies: [...filteredFinded],
+          addedThisTime: [...prevState.addedThisTime, targetMovie],
         };
       });
     }
@@ -61,11 +65,13 @@ class Search extends Component {
   userRatingHandler = (note, id) => {
     const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
     const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
-    if (isAlreadyRated) {
+    const wasRatedThisTime = this.state.ratedThisTime.find(movie => movie.id === id);
+
+    if (isAlreadyRated || wasRatedThisTime) {
       this.showAlertInfo("Już oceniłeś ten film.");
     } else if (isOnWantToWatch) {
       this.props.deleteMovieHandlerRED(id);
-      // ocen film
+
       const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
       ratedMovie.my_note = note;
       this.props.userRatingHandlerRED(ratedMovie);
@@ -73,6 +79,7 @@ class Search extends Component {
         const filteredFinded = prevState.findedMovies.filter(movie => movie.id !== id);
         return {
           findedMovies: [...filteredFinded],
+          addedThisTime: [...prevState.ratedThisTime, ratedMovie],
         };
       });
     } else {
@@ -83,6 +90,7 @@ class Search extends Component {
         const filteredFinded = prevState.findedMovies.filter(movie => movie.id !== id);
         return {
           findedMovies: [...filteredFinded],
+          ratedThisTime: [...prevState.ratedThisTime, ratedMovie],
         };
       });
     }

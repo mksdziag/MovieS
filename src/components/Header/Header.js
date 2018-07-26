@@ -1,6 +1,8 @@
 import React from "react";
-import "./Header.css";
 import { NavLink } from "react-router-dom";
+
+import "./Header.css";
+
 import Fontawesome from "@fortawesome/react-fontawesome";
 import searchIcon from "@fortawesome/fontawesome-free-solid/faSearch";
 import loginIcon from "@fortawesome/fontawesome-free-solid/faUserAlt";
