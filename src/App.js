@@ -21,6 +21,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route path="/" exact component={MainPage} />
+              <Route path="/search/:id" component={MoviePage} />
               <Route path="/search" component={Search} />
               <Route path="/auth" component={LogIn} />
               <Route path="/trending" component={Trending} />
