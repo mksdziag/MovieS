@@ -21,8 +21,8 @@ class Search extends Component {
       ratedThisTime: [],
       currentWatched: this.props.watchedRED,
       currentWantToWatch: this.props.wantToWatchRED,
-      alertMessage: "",
       isModalActive: false,
+      alertMessage: "",
     };
   }
 
