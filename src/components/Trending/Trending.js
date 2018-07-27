@@ -27,10 +27,10 @@ class Trending extends Component {
   }
 
   render() {
-    const trendingMovies = this.state.trendingNow.map(movie => {
+    const trendingMovies = this.state.trendingNow.map((movie, index) => {
       const { id, vote_average } = movie;
       const noteBackground = movieRatingColorize(vote_average);
-      return <TrendingItem key={id} {...movie} noteBackground={noteBackground} />;
+      return <TrendingItem key={id} place={index + 1} {...movie} noteBackground={noteBackground} />;
     });
     return (
       <div className="trending">
