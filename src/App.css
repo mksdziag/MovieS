@@ -46,6 +46,13 @@ a:focus {
   text-shadow: 0 0.25rem 0.75rem rgba(34, 60, 97, 0.2);
   box-shadow: 0 0.15rem 0.75rem rgba(34, 60, 97, 0.2);
 }
+.btn:disabled {
+  opacity: 0.25;
+}
+.btn:disabled:hover {
+  box-shadow: none;
+  cursor: not-allowed;
+}
 
 .btn--delete {
   width: 40%;

@@ -67,6 +67,30 @@
   line-height: 1;
 }
 
+.movie-page__my-note {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.5rem;
+  color: rgb(7, 30, 63);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.35);
+}
+.movie-page__my-note-count {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+}
+.movie-page__my-note-desc {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
 .movie-page__title {
   margin: 2rem 0;
   position: relative;
@@ -113,14 +137,6 @@
   position: relative;
   min-height: 350px;
   padding: 1rem;
-}
-
-.movie-page__trailer-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
 }
 
 .movie-page__trailer-info {

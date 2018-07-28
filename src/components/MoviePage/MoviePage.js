@@ -1,35 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
-import Rating from "../Rating/Rating";
+import axios from "axios";
 import Fontawesome from "@fortawesome/react-fontawesome";
 import backIcon from "@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft";
-import SimpleModal from "../UiElements/Modals/SimpleModal";
-import { userRatingFromSearch, addToWantToWatch } from "../../store/actions";
-import { movieUrl, trailerUrl } from "../../assets/apiConfig";
+import Rating from "../Rating/Rating";
+import YoutubeMovie from "../UiElements/Media/YoutubeMovie";
 import movieRatingColorize from "../../assets/movieRatingColorize";
+import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
+import { movieUrl, trailerUrl } from "../../assets/apiConfig";
 
 import "./MoviePage.css";
-import axios from "axios";
 
-class moviePage extends Component {
+class MoviePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addedThisTime: [],
-      ratedThisTime: [],
+      movie: "",
+      youtubeSrcSlug: "",
       currentWatched: this.props.watchedMoviesRED,
       currentWantToWatch: this.props.wantToWatchMoviesRED,
-      youtubeTrailerSlug: "",
-      isModalActive: false,
-      alertMessage: "",
-      movie: "",
     };
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    const movieId = match.params.id;
+    const movieId = this.props.match.params.id;
     const targetMovieOnLists = [
       ...this.state.currentWantToWatch,
       ...this.state.currentWatched,
@@ -41,7 +35,6 @@ class moviePage extends Component {
       axios
         .get(movieUrl(movieId))
         .then(results => {
-          console.log("wysyłam zapytanie do api");
           const movie = results.data;
           this.setState({ movie });
         })
@@ -50,20 +43,64 @@ class moviePage extends Component {
     axios
       .get(trailerUrl(movieId))
       .then(results => {
-        const youtubeTrailerSlug = results.data.results[0].key;
-        this.setState({ youtubeTrailerSlug });
+        const youtubeSrcSlug = results.data.results[0].key;
+        this.setState({ youtubeSrcSlug });
       })
       .catch(err => console.log(err));
   }
 
-  userRatingHandler = () => {};
+  wantToWatchHandler = e => {
+    const { movie } = this.state;
+    this.props.wantToWatchHandlerRED(movie);
+    e.target.innerText = "movie added";
+    e.target.setAttribute("disabled", "true");
+  };
+
+  userRatingHandler = (note, id) => {
+    const { movie } = this.state;
+    movie.my_note = note;
+    this.props.userRatingHandlerRED(movie);
+
+    const isAlreadyOnWantToWatch = this.state.currentWantToWatch.some(movie => movie.id === id);
+    if (isAlreadyOnWantToWatch) {
+      this.props.deleteMovieHandlerRED(id);
+    }
+  };
 
   render() {
     const { history } = this.props;
-    const { title, overview, release_date, poster_path, id, vote_average } = this.state.movie;
+    const {
+      title,
+      overview,
+      release_date,
+      poster_path,
+      id,
+      vote_average,
+      my_note,
+    } = this.state.movie;
+
     const noteBackground = movieRatingColorize(vote_average);
 
-    const content = this.state.movie ? (
+    const statusActions = !my_note && (
+      <div>
+        <Rating userRatingHandler={e => this.userRatingHandler(e.target.value, id)} />
+        {!this.state.currentWantToWatch.some(movie => movie.id === id) && (
+          <button onClick={e => this.wantToWatchHandler(e)} className="btn">
+            Want to watch
+          </button>
+        )}
+      </div>
+    );
+
+    const movieTrailer = this.state.youtubeSrcSlug ? (
+      <div className="movie-page__trailer-wrapper">
+        <YoutubeMovie title={title} youtubeSrcSlug={this.state.youtubeSrcSlug} />
+      </div>
+    ) : (
+      <p className="movie-page__trailer-info">Sorry... We do not have trailer for this movie.</p>
+    );
+
+    const moviePageContent = this.state.movie ? (
       <div className="movie-page">
         <div className="movie-page__wrapper">
           <div className="movie-page__content">
@@ -80,6 +117,12 @@ class moviePage extends Component {
                 <span className="movie-page__rating-count">{vote_average}</span>
                 <span className="movie-page__rating-desc">average</span>
               </div>
+              {my_note && (
+                <div className="movie-page__my-note">
+                  <span className="movie-page__my-note-count">{my_note}</span>
+                  <span className="movie-page__my-note-desc">my note</span>
+                </div>
+              )}
             </div>
             <div className="movie-page__overview-wrapper">
               <h4 className="movie-page__release-date">Release date: {release_date}</h4>
@@ -87,7 +130,7 @@ class moviePage extends Component {
               <h2 className="movie-page__title">"{title}"</h2>
               <p className="movie-page__overview">{overview}</p>
               <div className="movie-page__actions">
-                <Rating userRatingHandler={e => this.userRatingHandler(e.target.value, id)} />
+                {statusActions}
                 <a
                   href={`https://www.filmweb.pl/search?q=${title}`}
                   target="_blank"
@@ -98,38 +141,14 @@ class moviePage extends Component {
               </div>
             </div>
           </div>
-          {this.state.youtubeTrailerSlug ? (
-            <div className="movie-page__trailer-wrapper">
-              <iframe
-                className="movie-page__trailer-iframe"
-                title={title}
-                src={`https://www.youtube.com/embed/${this.state.youtubeTrailerSlug}`}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
-          ) : (
-            <p className="movie-page__trailer-info">
-              Neistety. Nie znaleźliśmy trailera do tego filmu. Prawdopodobnie w ogóle nie istnieje.
-            </p>
-          )}
+          {movieTrailer}
         </div>
-        <CSSTransition
-          in={this.state.isModalActive}
-          timeout={300}
-          classNames="fading"
-          mountOnEnter
-          unmountOnExit
-        >
-          <SimpleModal message={this.state.message} onCloseHandler={this.hideAlertInfo} />
-        </CSSTransition>
       </div>
     ) : (
       <h1>Loading</h1>
     );
 
-    return content;
+    return moviePageContent;
   }
 }
 
@@ -144,10 +163,11 @@ const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: movieObj => dispatch(userRatingFromSearch(movieObj)),
     wantToWatchHandlerRED: movieObj => dispatch(addToWantToWatch(movieObj)),
+    deleteMovieHandlerRED: id => dispatch(deleteMovie(id)),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(moviePage);
+)(MoviePage);
