@@ -39,10 +39,13 @@
 }
 
 .share-modal__link {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 .share-modal__social-icon {
+  margin-right: 0.5rem;
 }
 
 .share-modal__close {

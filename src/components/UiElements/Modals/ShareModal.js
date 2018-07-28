@@ -2,8 +2,9 @@ import React from "react";
 import "./ShareModal.css";
 import Fontawesome from "@fortawesome/react-fontawesome";
 import closeIcon from "@fortawesome/fontawesome-free-solid/faWindowClose";
-import { TwitterIcon } from "@fortawesome/free-brands-svg-icons/faFacebook";
-import { FacebookIcon } from "@fortawesome/free-brands-svg-icons/faTwitter";
+import { Icon } from "react-icons-kit";
+import { twitter } from "react-icons-kit/icomoon/twitter";
+import { facebook } from "react-icons-kit/icomoon/facebook";
 
 const shareModal = ({ message, onCloseHandler, sharedUrl }) => {
   return (
@@ -13,18 +14,18 @@ const shareModal = ({ message, onCloseHandler, sharedUrl }) => {
         <a
           href={`https://twitter.com/share?url=${sharedUrl}`}
           target="_blank"
-          className="share-modal__link"
+          className="share-modal__link btn"
         >
+          <Icon icon={twitter} className="share-modal__social-icon" />
           Share On Twitter
-          <Fontawesome icon={TwitterIcon} className="share-modal__social-icon" />
         </a>
         <a
           href={`https://www.facebook.com/sharer.php?s=100&p[url]=${sharedUrl}`}
           target="_blank"
-          className="share-modal__link"
+          className="share-modal__link btn"
         >
+          <Icon icon={facebook} className="share-modal__social-icon" />
           Share On Facebook
-          <Fontawesome icon={FacebookIcon} className="share-modal__social-icon" />
         </a>
         <Fontawesome icon={closeIcon} className="share-modal__close" onClick={onCloseHandler} />
       </div>
