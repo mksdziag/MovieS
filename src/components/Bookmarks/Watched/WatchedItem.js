@@ -11,7 +11,8 @@ const watchedItem = ({
   title,
   poster_path,
   release_date,
-  deleteMovieHandlerRED
+  deleteMovieHandlerRED,
+  onShareHandler,
 }) => {
   return (
     <div className="watched__card" key={id}>
@@ -43,11 +44,10 @@ const watchedItem = ({
         </div>
       </div>
       <div className="watched__actions">
-        <button className="btn ">share</button>
-        <button
-          className="btn btn--delete"
-          onClick={() => deleteMovieHandlerRED(id)}
-        >
+        <button className="btn " onClick={() => onShareHandler()}>
+          share
+        </button>
+        <button className="btn btn--delete" onClick={() => deleteMovieHandlerRED(id)}>
           delete
         </button>
       </div>
@@ -57,7 +57,7 @@ const watchedItem = ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteMovieHandlerRED: id => dispatch(deleteMovieFromWatched(id))
+    deleteMovieHandlerRED: id => dispatch(deleteMovieFromWatched(id)),
   };
 };
 
