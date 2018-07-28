@@ -33,14 +33,22 @@ const reducer = (state = initaialState, action) => {
     case actionTypes.USER_RATING_FROM_SEARCH:
       return {
         ...state,
-        watched: [...state.watched, action.movie],
         wantToWatch: [...state.wantToWatch],
+        watched: [...state.watched, action.movie],
       };
     case actionTypes.DELETE_MOVIE_FROM_WATCHED:
       return {
         ...state,
-        watched: [...state.watched].filter(movie => movie.id !== action.id),
         wantToWatch: [...state.wantToWatch],
+        watched: [...state.watched].filter(movie => movie.id !== action.id),
+      };
+    case actionTypes.USER_RATING_CHANGE:
+      const targetMovie = state.watched.find(movie => movie.id === action.id);
+      targetMovie.my_note = action.newNote;
+      return {
+        ...state,
+        wantToWatch: [...state.wantToWatch],
+        watched: [...state.watched.filter(movie => movie.id !== action.id), targetMovie],
       };
     case actionTypes.FETCH_STATE:
       return action.fetchedState;

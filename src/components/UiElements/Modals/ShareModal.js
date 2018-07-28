@@ -6,7 +6,7 @@ import { Icon } from "react-icons-kit";
 import { twitter } from "react-icons-kit/icomoon/twitter";
 import { facebook } from "react-icons-kit/icomoon/facebook";
 
-const shareModal = ({ message, onCloseHandler, sharedUrl }) => {
+const shareModal = ({ onCloseHandler, sharedUrl }) => {
   return (
     <div className="share-modal__backdrop" onClick={onCloseHandler}>
       <div className="share-modal">

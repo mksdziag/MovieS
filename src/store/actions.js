@@ -23,6 +23,12 @@ export const addToWantToWatch = movieObj => ({
   movie: movieObj,
 });
 
+export const userRatingChange = (id, note) => ({
+  type: actionTypes.USER_RATING_CHANGE,
+  id,
+  newNote: note,
+});
+
 export const fetchStateFromFirestore = () => {
   const fetchedState = JSON.parse(localStorage.getItem("state"));
   return {

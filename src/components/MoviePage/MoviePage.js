@@ -8,9 +8,11 @@ import YoutubeMovie from "../UiElements/Media/YoutubeMovie";
 import movieRatingColorize from "../../assets/movieRatingColorize";
 import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
 import { movieUrl, trailerUrl } from "../../assets/apiConfig";
+import { CSSTransition } from "react-transition-group";
 
 import "./MoviePage.css";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
+import ChangeNoteModal from "../UiElements/Modals/ChangeNoteModal";
 
 class MoviePage extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class MoviePage extends Component {
       youtubeSrcSlug: "",
       currentWatched: this.props.watchedMoviesRED,
       currentWantToWatch: this.props.wantToWatchMoviesRED,
+      isChangeNoteModalActive: false,
     };
   }
 
@@ -68,6 +71,13 @@ class MoviePage extends Component {
     }
   };
 
+  onNoteClickHandler = () => {
+    this.setState({ isChangeNoteModalActive: true });
+  };
+  onModalCloseHandler = () => {
+    this.setState({ isChangeNoteModalActive: false });
+  };
+
   render() {
     const { history } = this.props;
     const {
@@ -90,6 +100,13 @@ class MoviePage extends Component {
             Want to watch
           </button>
         )}
+      </div>
+    );
+
+    const myNote = my_note && (
+      <div className="movie-page__my-note" onClick={() => this.onNoteClickHandler()}>
+        <span className="movie-page__my-note-count">{my_note}</span>
+        <span className="movie-page__my-note-desc">my note</span>
       </div>
     );
 
@@ -118,12 +135,7 @@ class MoviePage extends Component {
                 <span className="movie-page__rating-count">{vote_average}</span>
                 <span className="movie-page__rating-desc">average</span>
               </div>
-              {my_note && (
-                <div className="movie-page__my-note">
-                  <span className="movie-page__my-note-count">{my_note}</span>
-                  <span className="movie-page__my-note-desc">my note</span>
-                </div>
-              )}
+              {myNote}
             </div>
             <div className="movie-page__overview-wrapper">
               <h4 className="movie-page__release-date">Release date: {release_date}</h4>
@@ -144,6 +156,15 @@ class MoviePage extends Component {
           </div>
           {movieTrailer}
         </div>
+        <CSSTransition
+          in={this.state.isChangeNoteModalActive}
+          timeout={300}
+          classNames="bounce-fade"
+          mountOnEnter
+          unmountOnExit
+        >
+          <ChangeNoteModal onCloseHandler={this.onModalCloseHandler} movieId={id} />
+        </CSSTransition>
       </div>
     ) : (
       <LoadingSpinner />
