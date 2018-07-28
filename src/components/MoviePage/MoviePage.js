@@ -10,6 +10,7 @@ import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store
 import { movieUrl, trailerUrl } from "../../assets/apiConfig";
 
 import "./MoviePage.css";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
 
 class MoviePage extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class MoviePage extends Component {
     const noteBackground = movieRatingColorize(vote_average);
 
     const statusActions = !my_note && (
-      <div>
+      <div className="movie-page__status-actions">
         <Rating userRatingHandler={e => this.userRatingHandler(e.target.value, id)} />
         {!this.state.currentWantToWatch.some(movie => movie.id === id) && (
           <button onClick={e => this.wantToWatchHandler(e)} className="btn">
@@ -145,7 +146,7 @@ class MoviePage extends Component {
         </div>
       </div>
     ) : (
-      <h1>Loading</h1>
+      <LoadingSpinner />
     );
 
     return moviePageContent;

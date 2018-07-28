@@ -36,6 +36,7 @@ a:focus {
   border-bottom: 1px solid rgba(7, 30, 63, 0.15);
   transition: text-shadow 200ms ease-in-out, box-shadow 200ms ease-in-out;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-card {

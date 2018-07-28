@@ -113,6 +113,14 @@
   flex-direction: column;
 }
 
+.movie-page__status-actions {
+  display: flex;
+  flex-direction: column;
+}
+.movie-page__status-actions > * {
+  margin-bottom: 0.5rem;
+}
+
 .btn--secondary {
   padding: 1rem;
   margin: 1rem 0;
@@ -137,6 +145,8 @@
   position: relative;
   min-height: 350px;
   padding: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .movie-page__trailer-info {
@@ -166,6 +176,10 @@
   .movie-page__overview-wrapper {
     width: 65%;
     margin-left: 2rem;
+  }
+
+  .movie-page__status-actions {
+    flex-direction: row;
   }
 
   .movie-page__release-date {
