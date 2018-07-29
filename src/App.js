@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import { fetchStateFromFirestore } from "./store/actions";
 
 import "./App.css";
 
@@ -10,7 +11,6 @@ import Search from "./components/Search/Search";
 import MoviePage from "./components/MoviePage/MoviePage";
 import LogIn from "./components/LogIn/LogIn";
 import Trending from "./components/Trending/Trending";
-import { fetchStateFromFirestore } from "./store/actions";
 
 class App extends Component {
   render() {
