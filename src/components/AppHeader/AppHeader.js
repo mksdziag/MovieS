@@ -1,20 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-import "./Header.css";
-
+import "./AppHeader.css";
 import Fontawesome from "@fortawesome/react-fontawesome";
 import searchIcon from "@fortawesome/fontawesome-free-solid/faSearch";
 import loginIcon from "@fortawesome/fontawesome-free-solid/faUserAlt";
 import chartLineIcon from "@fortawesome/fontawesome-free-solid/faChartLine";
 
-const header = () => {
+const appHeader = () => {
   return (
     <header className="app-header">
       <nav className="app-nav">
         <div className="app-header__logo-wrapper">
           <NavLink strict={true} className="nav-link app-nav__logo" to="/">
-            MovieBD
+            MyMovies Box
           </NavLink>
         </div>
         <div className="nav-links__wrapper">
@@ -36,4 +34,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default appHeader;

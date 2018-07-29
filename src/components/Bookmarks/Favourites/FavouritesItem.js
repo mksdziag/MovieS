@@ -12,7 +12,6 @@ const favouritesItem = ({ id, poster_path, my_note, idx, title }) => {
         />
       </Link>
       <span className="favourites__my-note">
-        {" "}
         <span className="favourites__my-note-desc">my note:</span>
         {my_note}
       </span>

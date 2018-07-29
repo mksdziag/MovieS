@@ -19,7 +19,6 @@ class LogIn extends Component {
 
   formsubmitHandler = e => {
     e.preventDefault();
-
     e.target.reset();
   };
 

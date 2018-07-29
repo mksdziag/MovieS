@@ -1,19 +1,19 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Rating from "../../Rating/Rating";
+import { connect } from "react-redux";
 import { userRating, deleteMovie } from "../../../store/actions";
+import Rating from "../../Rating/Rating";
 
 const wantToWatchItem = ({
   id,
   poster_path,
-  noteBackground,
+  noteColor,
   vote_average,
   title,
   release_date,
   movieOverwiev,
   deleteMovieHandlerRED,
-  userRatingHandlerRED
+  userRatingHandlerRED,
 }) => {
   return (
     <div className="to-watch__card" key={id}>
@@ -31,25 +31,18 @@ const wantToWatchItem = ({
         <div className="to-watch__details-bottom">
           <div className="to-watch__details-bottom-first">
             <p className="to-watch__release-date">Released: {release_date}</p>
-            <div style={noteBackground} className="to-watch__rating">
-              <span className="to-watch__rating-desc">average:</span>{" "}
-              {vote_average}
+            <div style={noteColor} className="to-watch__rating">
+              <span className="to-watch__rating-desc">average:</span> {vote_average}
             </div>
           </div>
           <p className="to-watch__desc">{movieOverwiev}</p>
         </div>
       </div>
-      <div className=" to-watch__actions">
-        <span
-          className="btn btn--delete"
-          onClick={() => deleteMovieHandlerRED(id)}
-        >
+      <div className="to-watch__actions">
+        <span className="btn btn--delete" onClick={() => deleteMovieHandlerRED(id)}>
           delete
         </span>
-
-        <Rating
-          userRatingHandler={e => userRatingHandlerRED(e.target.value, id)}
-        />
+        <Rating userRatingHandler={e => userRatingHandlerRED(e.target.value, id)} />
       </div>
     </div>
   );
@@ -58,7 +51,7 @@ const wantToWatchItem = ({
 const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: (note, id) => dispatch(userRating(note, id)),
-    deleteMovieHandlerRED: id => dispatch(deleteMovie(id))
+    deleteMovieHandlerRED: id => dispatch(deleteMovie(id)),
   };
 };
 

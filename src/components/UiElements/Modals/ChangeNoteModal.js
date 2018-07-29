@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./ChangeNoteModal.css";
 import { userRatingChange } from "../../../store/actions";
+import "./ChangeNoteModal.css";
 import Fontawesome from "@fortawesome/react-fontawesome";
 import closeIcon from "@fortawesome/fontawesome-free-solid/faWindowClose";
 

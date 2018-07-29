@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-
 import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
 import { searchUrl } from "../../assets/apiConfig";
-
+import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
 import "./Search.css";
-
-import movieRatingColorize from "../../assets/movieRatingColorize";
 import SearchItem from "./SearchItem";
 import SimpleModal from "../UiElements/Modals/SimpleModal";
 
@@ -119,13 +116,13 @@ class Search extends Component {
 
     const moviesListItems = findedMovies.map(movie => {
       const { id, vote_average } = movie;
-      const noteBackground = movieRatingColorize(vote_average);
+      const noteColor = movieRatingColorize(vote_average);
 
       return (
         <SearchItem
           key={id}
           {...movie}
-          noteBackground={noteBackground}
+          noteColor={noteColor}
           userRatingHandler={(note, id) => this.userRatingHandler(note, id)}
           wantToWatchHandler={id => this.wantToWatchHandler(id)}
         />

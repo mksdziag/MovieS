@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import movieRatingColorize from "../../assets/movieRatingColorize";
+import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
 import "./TrendingItem.css";
 const searchItem = ({ id, vote_average, poster_path, original_title, release_date, place }) => {
-  const noteBackground = movieRatingColorize(vote_average);
+  const noteColor = movieRatingColorize(vote_average);
 
   return (
     <li className="trending-item">
@@ -14,7 +14,7 @@ const searchItem = ({ id, vote_average, poster_path, original_title, release_dat
           alt=""
         />
         <div className="trending-item__place">{place + "."}</div>
-        <div style={noteBackground} className="trending-item__rating">
+        <div style={noteColor} className="trending-item__rating">
           <span className="trending-item__rating-count">{vote_average}</span>
         </div>
         <div className="trending-item__movie-details-wrapper">

@@ -5,7 +5,7 @@ import { deleteMovieFromWatched } from "../../../store/actions";
 
 const watchedItem = ({
   id,
-  noteBackground,
+  noteColor,
   vote_average,
   my_note,
   title,
@@ -34,7 +34,7 @@ const watchedItem = ({
         </Link>
       </div>
       <div className="watched__ratings">
-        <div style={noteBackground} className="watched__rating">
+        <div style={noteColor} className="watched__rating">
           <span className="watched__rating-count">{vote_average}</span>
           <span className="watched__rating-desc">average</span>
         </div>
@@ -44,7 +44,7 @@ const watchedItem = ({
         </div>
       </div>
       <div className="watched__actions">
-        <button className="btn " onClick={() => onShareHandler()}>
+        <button className="btn" onClick={() => onShareHandler()}>
           share
         </button>
         <button className="btn btn--delete" onClick={() => deleteMovieHandlerRED(id)}>

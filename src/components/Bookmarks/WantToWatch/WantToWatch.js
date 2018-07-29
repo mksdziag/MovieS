@@ -1,10 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
 import "./WantToWatch.css";
 import WantToWatchItem from "./WantToWatchItem";
-import movieRatingColorize from "../../../assets/movieRatingColorize";
+import movieRatingColorize from "../../../assets/helpers/movieRatingColorize";
 import SectionTitle from "../../UiElements/SectionTitle";
 
 const wantToWatch = props => {
@@ -12,19 +11,19 @@ const wantToWatch = props => {
   const moviesToWatch = wantToWatchRED.map(movie => {
     const { id, overview, vote_average } = movie;
 
-    let movieOverwiev = overview.split(" ");
-    movieOverwiev =
-      movieOverwiev.length > 40
-        ? movieOverwiev.slice(0, 40).join(" ") + "..."
-        : movieOverwiev.join(" ");
+    let shortenMovieOverwiev = overview.split(" ");
+    shortenMovieOverwiev =
+      shortenMovieOverwiev.length > 40
+        ? shortenMovieOverwiev.slice(0, 40).join(" ") + "..."
+        : shortenMovieOverwiev.join(" ");
 
-    const noteBackground = movieRatingColorize(vote_average);
+    const noteColor = movieRatingColorize(vote_average);
 
     return (
       <WantToWatchItem
         key={id}
-        movieOverwiev={movieOverwiev}
-        noteBackground={noteBackground}
+        movieOverwiev={shortenMovieOverwiev}
+        noteColor={noteColor}
         {...movie}
       />
     );
@@ -32,7 +31,7 @@ const wantToWatch = props => {
 
   return (
     <section className="section to-watch__wrapper">
-      <SectionTitle title="Want to watch" />
+      <SectionTitle title="Want to-watch" />
       {wantToWatchRED.length > 0 ? (
         <ul className="to-watch__list">{moviesToWatch}</ul>
       ) : (
@@ -50,7 +49,7 @@ const wantToWatch = props => {
 const mapStateToProps = state => {
   return {
     wantToWatchRED: state.wantToWatch,
-    watchedRED: state.watched
+    watchedRED: state.watched,
   };
 };
 

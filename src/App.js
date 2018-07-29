@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import "./App.css";
 
-import Header from "./components/Header/Header";
+import AppHeader from "./components/AppHeader/AppHeader";
 import MainPage from "./containers/MainPage/MainPage";
 import Search from "./components/Search/Search";
 import MoviePage from "./components/MoviePage/MoviePage";
@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header />
+          <AppHeader />
           <main>
             <Switch>
               <Route path="/" exact component={MainPage} />

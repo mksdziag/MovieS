@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { CSSTransition } from "react-transition-group";
+import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
+import { movieUrl, trailerUrl } from "../../assets/apiConfig";
+import "./MoviePage.css";
 import Fontawesome from "@fortawesome/react-fontawesome";
 import backIcon from "@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft";
 import Rating from "../Rating/Rating";
 import YoutubeMovie from "../UiElements/Media/YoutubeMovie";
-import movieRatingColorize from "../../assets/movieRatingColorize";
-import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
-import { movieUrl, trailerUrl } from "../../assets/apiConfig";
-import { CSSTransition } from "react-transition-group";
-
-import "./MoviePage.css";
+import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 import ChangeNoteModal from "../UiElements/Modals/ChangeNoteModal";
 
@@ -90,7 +89,7 @@ class MoviePage extends Component {
       my_note,
     } = this.state.movie;
 
-    const noteBackground = movieRatingColorize(vote_average);
+    const noteColor = movieRatingColorize(vote_average);
 
     const statusActions = !my_note && (
       <div className="movie-page__status-actions">
@@ -131,7 +130,7 @@ class MoviePage extends Component {
               <button className="btn movie-page__back" onClick={() => history.goBack()}>
                 <Fontawesome icon={backIcon} />
               </button>
-              <div style={noteBackground} className="movie-page__rating">
+              <div style={noteColor} className="movie-page__rating">
                 <span className="movie-page__rating-count">{vote_average}</span>
                 <span className="movie-page__rating-desc">average</span>
               </div>
