@@ -66,7 +66,7 @@ class Search extends Component {
     const wasAddedThisTime = this.state.addedThisTime.some(movie => movie.id === id);
 
     if (isAlreadyRated || wasRatedThisTime) {
-      this.showModalInfo("You've already watched this movie.");
+      this.showModalInfo("You've already rated this movie.");
     } else if (isOnToWatch || wasAddedThisTime) {
       this.props.deleteMovieHandlerRED(id);
       const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);

@@ -9,13 +9,14 @@ const changeNoteModal = ({ onCloseHandler, movieId, userRatingChangeHandlerRED }
   const userRatingChangeHandler = e => {
     const newRate = e.target.value;
     userRatingChangeHandlerRED(movieId, newRate);
+    onCloseHandler();
   };
 
   return (
     <div className="change-note-modal__backdrop" onClick={onCloseHandler}>
-      <div className="change-note-modal">
+      <div className="change-note-modal" onClick={e => e.stopPropagation()}>
         <p className="change-note-modal__message">Change note for this movie:</p>
-        <select onChange={e => userRatingChangeHandler(e, movieId)} className="btn btn--select">
+        <select onChange={e => userRatingChangeHandler(e)} className="btn btn--select">
           <option>1</option>
           <option>2</option>
           <option>3</option>
