@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import WantToWatch from '../../components/Bookmarks/WantToWatch/WantToWatch';
-import Watched from '../../components/Bookmarks/Watched/Watched';
-import Favourites from '../../components/Bookmarks/Favourites/Favourites';
+import React, { Fragment } from "react";
+import ToWatch from "../../components/Bookmarks/ToWatch/ToWatch";
+import Watched from "../../components/Bookmarks/Watched/Watched";
+import Favourites from "../../components/Bookmarks/Favourites/Favourites";
 
 const mainPage = props => {
   return (
     <Fragment>
-      <WantToWatch />
+      <ToWatch />
       <Watched />
       <Favourites />
     </Fragment>

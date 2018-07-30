@@ -9,7 +9,7 @@ const searchItem = ({
   release_date,
   overview,
   userRatingHandler,
-  wantToWatchHandler,
+  toWatchHandler,
 }) => {
   return (
     <li className="search__card">
@@ -35,7 +35,7 @@ const searchItem = ({
         </div>
       </Link>
       <div className="search__actions">
-        <button onClick={() => wantToWatchHandler(id)} className="btn">
+        <button onClick={() => toWatchHandler(id)} className="btn">
           Want to watch
         </button>
         <Rating userRatingHandler={e => userRatingHandler(e.target.value, id)} />

@@ -70,28 +70,3 @@ a:focus {
   outline: none;
   transition: all 150ms ease-in-out;
 }
-
-.no-items-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 1.25rem;
-  font-weight: 200;
-  color: rgba(7, 30, 63, 0.45);
-  transform: translate(-50%, -50%);
-}
-
-.no-items-info__link {
-  display: block;
-  color: inherit;
-  text-decoration: underline;
-}
-
-@media only screen and (min-width: 765px) {
-  .no-items-info__link {
-    display: inline-block;
-    margin: 0 1rem;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(7, 30, 63, 0.45);
-  }
-}

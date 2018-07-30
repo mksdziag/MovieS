@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
 import "./LogIn.css";
+import SimpleModal from "../UiElements/Modals/SimpleModal";
 
 class LogIn extends Component {
   state = {
@@ -8,7 +10,14 @@ class LogIn extends Component {
     userPassword: "",
     loginError: false,
     errorMessage: "Something went wrong. Please try again...",
+    rodoMessage:
+      "Due to RODO, we cannot store your personal data, so registering is disabled. You can use this app as normal. Your data will be stored locally on Your browser. We do not deal with your personal info in any form",
+    isRodoModalActive: false,
   };
+
+  componentDidMount() {
+    this.modalOpenHandler();
+  }
 
   switchModeHandler = e => {
     e.preventDefault();
@@ -31,6 +40,22 @@ class LogIn extends Component {
   passwordInputHandler = e => {
     this.setState({
       userPassword: e.target.value,
+    });
+  };
+
+  modalOpenHandler = () => {
+    this.setState({
+      isRodoModalActive: true,
+    });
+    // hiding modal after 8.5s
+    setTimeout(() => {
+      this.modalCloseHandler();
+    }, 8500);
+  };
+
+  modalCloseHandler = () => {
+    this.setState({
+      isRodoModalActive: false,
     });
   };
 
@@ -67,6 +92,15 @@ class LogIn extends Component {
             </button>
           </div>
         </form>
+        <CSSTransition
+          in={this.state.isRodoModalActive}
+          timeout={300}
+          classNames="fading"
+          mountOnEnter
+          unmountOnExit
+        >
+          <SimpleModal message={this.state.rodoMessage} onCloseHandler={this.modalCloseHandler} />
+        </CSSTransition>
       </section>
     );
   }

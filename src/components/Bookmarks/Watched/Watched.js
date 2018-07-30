@@ -10,10 +10,14 @@ import ShareModal from "../../UiElements/Modals/ShareModal";
 class Watched extends Component {
   state = {
     isModalActive: false,
+    sharedMovieId: "",
   };
 
-  onShareHandler = () => {
-    this.setState({ isModalActive: true });
+  onShareHandler = id => {
+    this.setState({
+      sharedMovieId: id,
+      isModalActive: true,
+    });
   };
 
   onModalCloseHandler = () => {
@@ -28,7 +32,7 @@ class Watched extends Component {
 
       return (
         <WatchedItem
-          onShareHandler={this.onShareHandler}
+          onShareHandler={() => this.onShareHandler(id)}
           key={id}
           noteColor={noteColor}
           {...movie}
@@ -47,7 +51,10 @@ class Watched extends Component {
           mountOnEnter
           unmountOnExit
         >
-          <ShareModal sharedUrl={window.location.href} onCloseHandler={this.onModalCloseHandler} />
+          <ShareModal
+            sharedUrl={`${window.location.href}/movie/${this.state.sharedMovieId}`}
+            onCloseHandler={this.onModalCloseHandler}
+          />
         </CSSTransition>
       </section>
     );

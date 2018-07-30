@@ -18,7 +18,7 @@ export const userRatingFromSearch = movieObj => ({
   movie: movieObj,
 });
 
-export const addToWantToWatch = movieObj => ({
+export const addToToWatch = movieObj => ({
   type: actionTypes.ADD_TO_WANT_FROM_SEARCH,
   movie: movieObj,
 });

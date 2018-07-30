@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { userRating, deleteMovie } from "../../../store/actions";
 import Rating from "../../Rating/Rating";
 
-const wantToWatchItem = ({
+const toWatchItem = ({
   id,
   poster_path,
   noteColor,
@@ -58,4 +58,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(wantToWatchItem);
+)(toWatchItem);

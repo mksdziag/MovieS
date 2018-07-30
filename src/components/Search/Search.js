@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
+import { userRatingFromSearch, addToToWatch, deleteMovie } from "../../store/actions";
 import { searchUrl } from "../../assets/apiConfig";
 import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
 import "./Search.css";
@@ -17,7 +17,7 @@ class Search extends Component {
       addedThisTime: [],
       ratedThisTime: [],
       currentWatched: this.props.watchedRED,
-      currentWantToWatch: this.props.wantToWatchRED,
+      currentToWatch: this.props.toWatchRED,
       isModalActive: false,
       alertMessage: "",
     };
@@ -37,18 +37,18 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
-  wantToWatchHandler = id => {
-    const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
-    const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
-    const wasAddedThisTime = this.state.addedThisTime.find(movie => movie.id === id);
+  toWatchHandler = id => {
+    const isAlreadyRated = this.state.currentWatched.some(movie => movie.id === id);
+    const isOnToWatch = this.state.currentToWatch.some(movie => movie.id === id);
+    const wasAddedThisTime = this.state.addedThisTime.some(movie => movie.id === id);
 
-    if (isOnWantToWatch || wasAddedThisTime) {
-      this.showAlertInfo("Ten film jest już na Twojej liście do obejrzenia");
+    if (isOnToWatch || wasAddedThisTime) {
+      this.showModalInfo("This movie is already on Your To Watch list.");
     } else if (isAlreadyRated) {
-      this.showAlertInfo("Już obejrzałes i oceniłeś ten film.");
+      this.showModalInfo("You've already watched and rated this movie.");
     } else {
       const targetMovie = this.state.findedMovies.find(movie => movie.id === id);
-      this.props.wantToWatchHandlerRED(targetMovie);
+      this.props.toWatchHandlerRED(targetMovie);
       this.setState(prevState => {
         const filteredFinded = prevState.findedMovies.filter(movie => movie.id !== id);
         return {
@@ -60,15 +60,15 @@ class Search extends Component {
   };
 
   userRatingHandler = (note, id) => {
-    const isAlreadyRated = this.state.currentWatched.find(movie => movie.id === id);
-    const isOnWantToWatch = this.state.currentWantToWatch.find(movie => movie.id === id);
-    const wasRatedThisTime = this.state.ratedThisTime.find(movie => movie.id === id);
+    const isAlreadyRated = this.state.currentWatched.some(movie => movie.id === id);
+    const isOnToWatch = this.state.currentToWatch.some(movie => movie.id === id);
+    const wasRatedThisTime = this.state.ratedThisTime.some(movie => movie.id === id);
+    const wasAddedThisTime = this.state.addedThisTime.some(movie => movie.id === id);
 
     if (isAlreadyRated || wasRatedThisTime) {
-      this.showAlertInfo("Już oceniłeś ten film.");
-    } else if (isOnWantToWatch) {
+      this.showModalInfo("You've already watched this movie.");
+    } else if (isOnToWatch || wasAddedThisTime) {
       this.props.deleteMovieHandlerRED(id);
-
       const ratedMovie = this.state.findedMovies.find(movie => movie.id === id);
       ratedMovie.my_note = note;
       this.props.userRatingHandlerRED(ratedMovie);
@@ -93,18 +93,18 @@ class Search extends Component {
     }
   };
 
-  showAlertInfo = message => {
+  showModalInfo = message => {
     this.setState({
       alertMessage: message,
       isModalActive: true,
     });
     // hiding modal after 2.5s
     setTimeout(() => {
-      this.hideAlertInfo();
+      this.hideModalInfo();
     }, 2500);
   };
 
-  hideAlertInfo = () => {
+  hideModalInfo = () => {
     this.setState({
       isModalActive: false,
       alertMessage: "",
@@ -124,7 +124,7 @@ class Search extends Component {
           {...movie}
           noteColor={noteColor}
           userRatingHandler={(note, id) => this.userRatingHandler(note, id)}
-          wantToWatchHandler={id => this.wantToWatchHandler(id)}
+          toWatchHandler={id => this.toWatchHandler(id)}
         />
       );
     });
@@ -148,7 +148,7 @@ class Search extends Component {
           mountOnEnter
           unmountOnExit
         >
-          <SimpleModal message={this.state.alertMessage} onCloseHandler={this.hideAlertInfo} />
+          <SimpleModal message={this.state.alertMessage} onCloseHandler={this.hideModalInfo} />
         </CSSTransition>
       </div>
     );
@@ -157,14 +157,14 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    wantToWatchRED: state.wantToWatch,
+    toWatchRED: state.toWatch,
     watchedRED: state.watched,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: movieObj => dispatch(userRatingFromSearch(movieObj)),
-    wantToWatchHandlerRED: movieObj => dispatch(addToWantToWatch(movieObj)),
+    toWatchHandlerRED: movieObj => dispatch(addToToWatch(movieObj)),
     deleteMovieHandlerRED: id => dispatch(deleteMovie(id)),
   };
 };

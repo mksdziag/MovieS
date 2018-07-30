@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { CSSTransition } from "react-transition-group";
-import { userRatingFromSearch, addToWantToWatch, deleteMovie } from "../../store/actions";
+import { userRatingFromSearch, addToToWatch, deleteMovie } from "../../store/actions";
 import { movieUrl, trailerUrl } from "../../assets/apiConfig";
 import "./MoviePage.css";
 import Fontawesome from "@fortawesome/react-fontawesome";
@@ -20,17 +20,16 @@ class MoviePage extends Component {
       movie: "",
       youtubeSrcSlug: "",
       currentWatched: this.props.watchedMoviesRED,
-      currentWantToWatch: this.props.wantToWatchMoviesRED,
+      currentToWatch: this.props.toWatchMoviesRED,
       isChangeNoteModalActive: false,
     };
   }
 
   componentDidMount() {
     const movieId = this.props.match.params.id;
-    const targetMovieOnLists = [
-      ...this.state.currentWantToWatch,
-      ...this.state.currentWatched,
-    ].find(movie => movie.id === parseFloat(movieId));
+    const targetMovieOnLists = [...this.state.currentToWatch, ...this.state.currentWatched].find(
+      movie => movie.id === parseFloat(movieId)
+    );
 
     if (targetMovieOnLists) {
       this.setState({ movie: targetMovieOnLists });
@@ -52,9 +51,9 @@ class MoviePage extends Component {
       .catch(err => console.log(err));
   }
 
-  wantToWatchHandler = e => {
+  toWatchHandler = e => {
     const { movie } = this.state;
-    this.props.wantToWatchHandlerRED(movie);
+    this.props.toWatchHandlerRED(movie);
     e.target.innerText = "movie added";
     e.target.setAttribute("disabled", "true");
   };
@@ -64,8 +63,8 @@ class MoviePage extends Component {
     movie.my_note = note;
     this.props.userRatingHandlerRED(movie);
 
-    const isAlreadyOnWantToWatch = this.state.currentWantToWatch.some(movie => movie.id === id);
-    if (isAlreadyOnWantToWatch) {
+    const isAlreadyOnToWatch = this.state.currentToWatch.some(movie => movie.id === id);
+    if (isAlreadyOnToWatch) {
       this.props.deleteMovieHandlerRED(id);
     }
   };
@@ -94,8 +93,8 @@ class MoviePage extends Component {
     const statusActions = !my_note && (
       <div className="movie-page__status-actions">
         <Rating userRatingHandler={e => this.userRatingHandler(e.target.value, id)} />
-        {!this.state.currentWantToWatch.some(movie => movie.id === id) && (
-          <button onClick={e => this.wantToWatchHandler(e)} className="btn">
+        {!this.state.currentToWatch.some(movie => movie.id === id) && (
+          <button onClick={e => this.toWatchHandler(e)} className="btn">
             Want to watch
           </button>
         )}
@@ -176,14 +175,14 @@ class MoviePage extends Component {
 const mapStateToProps = state => {
   return {
     watchedMoviesRED: state.watched,
-    wantToWatchMoviesRED: state.wantToWatch,
+    toWatchMoviesRED: state.toWatch,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     userRatingHandlerRED: movieObj => dispatch(userRatingFromSearch(movieObj)),
-    wantToWatchHandlerRED: movieObj => dispatch(addToWantToWatch(movieObj)),
+    toWatchHandlerRED: movieObj => dispatch(addToToWatch(movieObj)),
     deleteMovieHandlerRED: id => dispatch(deleteMovie(id)),
   };
 };
