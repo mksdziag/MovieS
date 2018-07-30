@@ -29,7 +29,7 @@ export const userRatingChange = (id, note) => ({
   newNote: note,
 });
 
-export const fetchStateFromFirestore = () => {
+export const fetchStateFromLocalStorage = () => {
   const fetchedState = JSON.parse(localStorage.getItem("state"));
   return {
     type: actionTypes.FETCH_STATE,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchStateFromFirestore } from "./store/actions";
+import { fetchStateFromLocalStorage } from "./store/actions";
 
 import "./App.css";
 
@@ -36,7 +36,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStateFromFirestoreRED: () => dispatch(fetchStateFromFirestore()),
+    fetchStateFromLocalStorageRED: () => dispatch(fetchStateFromLocalStorage()),
   };
 };
 
