@@ -31,7 +31,7 @@ const toWatch = props => {
         <ul className="to-watch__list">{moviesToWatch}</ul>
       ) : (
         <p className="no-items-info">
-          No movies on Your list. Rate them or add to your wish list from our database
+          No movies on Your list. Add them to your wish list from our database
           <br />
           <Link className="no-items-info__link" to="/search">
             Search for movies
