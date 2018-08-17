@@ -1,26 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import "./ToWatch.css";
-import ToWatchItem from "./ToWatchItem";
-import movieRatingColorize from "../../../assets/helpers/movieRatingColorize";
-import SectionTitle from "../../UiElements/SectionTitle";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './ToWatch.css';
+import ToWatchItem from './ToWatchItem';
+import movieRatingColorize from '../../../assets/helpers/movieRatingColorize';
+import SectionTitle from '../../UiElements/SectionTitle';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const toWatch = props => {
   const { toWatchRED } = props;
   const moviesToWatch = toWatchRED.map(movie => {
     const { id, overview, vote_average } = movie;
 
-    let shortenMovieOverwiev = overview.split(" ");
+    let shortenMovieOverwiev = overview.split(' ');
     shortenMovieOverwiev =
       shortenMovieOverwiev.length > 40
-        ? shortenMovieOverwiev.slice(0, 40).join(" ") + "..."
-        : shortenMovieOverwiev.join(" ");
+        ? shortenMovieOverwiev.slice(0, 40).join(' ') + '...'
+        : shortenMovieOverwiev.join(' ');
 
     const noteColor = movieRatingColorize(vote_average);
 
     return (
-      <ToWatchItem key={id} movieOverwiev={shortenMovieOverwiev} noteColor={noteColor} {...movie} />
+      <CSSTransition key={id} timeout={400} classNames="items-fade">
+        <ToWatchItem movieOverwiev={shortenMovieOverwiev} noteColor={noteColor} {...movie} />
+      </CSSTransition>
     );
   });
 
@@ -28,7 +31,9 @@ const toWatch = props => {
     <section className="section to-watch__wrapper">
       <SectionTitle title="Want to watch" />
       {toWatchRED.length > 0 ? (
-        <ul className="to-watch__list">{moviesToWatch}</ul>
+        <TransitionGroup component={'ul'} className="to-watch__list">
+          {moviesToWatch}
+        </TransitionGroup>
       ) : (
         <p className="no-items-info">
           No movies on Your list. Add them to your wish list from our database

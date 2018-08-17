@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { userRating, deleteMovie } from "../../../store/actions";
-import Rating from "../../Rating/Rating";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userRating, deleteMovie } from '../../../store/actions';
+import Rating from '../../Rating/Rating';
 
 const toWatchItem = ({
   id,
@@ -16,7 +16,7 @@ const toWatchItem = ({
   userRatingHandlerRED,
 }) => {
   return (
-    <div className="to-watch__card" key={id}>
+    <li className="to-watch__item" key={id}>
       <Link to={`/movies/${id}`}>
         <img
           className="to-watch__movie-cover"
@@ -44,7 +44,7 @@ const toWatchItem = ({
         </span>
         <Rating userRatingHandler={e => userRatingHandlerRED(e.target.value, id)} />
       </div>
-    </div>
+    </li>
   );
 };
 

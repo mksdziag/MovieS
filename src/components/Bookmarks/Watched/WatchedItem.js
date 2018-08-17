@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { deleteMovieFromWatched } from "../../../store/actions";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteMovieFromWatched } from '../../../store/actions';
 
 const watchedItem = ({
   id,
@@ -15,7 +15,7 @@ const watchedItem = ({
   onShareHandler,
 }) => {
   return (
-    <div className="watched__card" key={id}>
+    <li className="watched__item" key={id}>
       <Link to={`/movies/${id}`}>
         <img
           className="watched__movie-cover"
@@ -26,9 +26,9 @@ const watchedItem = ({
       <div>
         <Link className="watched__movie-title-link" to={`/movies/${id}`}>
           <h3 className="watched__movie-title">
-            "{title}"{" "}
+            "{title}"{' '}
             <span className="watched__movie-title-year">
-              {"(" + release_date.substr(0, 4) + ")"}
+              {'(' + release_date.substr(0, 4) + ')'}
             </span>
           </h3>
         </Link>
@@ -51,7 +51,7 @@ const watchedItem = ({
           delete
         </button>
       </div>
-    </div>
+    </li>
   );
 };
 

@@ -1,4 +1,11 @@
-.watched__card {
+.watched__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.watched__item {
   justify-content: center;
   width: 300px;
   padding: 2rem 1rem;
@@ -64,13 +71,6 @@
 .watched__actions {
   display: flex;
   justify-content: space-around;
-}
-
-.watched__list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
 }
 
 .watched__movie-title-year {
