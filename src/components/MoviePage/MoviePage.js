@@ -1,28 +1,37 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-import { CSSTransition } from "react-transition-group";
-import { userRatingFromSearch, addToToWatch, deleteMovie } from "../../store/actions";
-import { movieUrl, trailerUrl } from "../../assets/apiConfig";
-import "./MoviePage.css";
-import Fontawesome from "@fortawesome/react-fontawesome";
-import backIcon from "@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft";
-import Rating from "../Rating/Rating";
-import YoutubeMovie from "../UiElements/Media/YoutubeMovie";
-import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
-import LoadingSpinner from "../UiElements/LoadingSpinner";
-import ChangeNoteModal from "../UiElements/Modals/ChangeNoteModal";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { CSSTransition } from 'react-transition-group';
+import { userRatingFromSearch, addToToWatch, deleteMovie } from '../../store/actions';
+import { movieUrl, trailerUrl } from '../../assets/apiConfig';
+import './MoviePage.css';
+import Fontawesome from '@fortawesome/react-fontawesome';
+import backIcon from '@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft';
+import Rating from '../Rating/Rating';
+import YoutubeMovie from '../UiElements/Media/YoutubeMovie';
+import movieRatingColorize from '../../assets/helpers/movieRatingColorize';
+import LoadingSpinner from '../UiElements/LoadingSpinner';
+import ChangeNoteModal from '../UiElements/Modals/ChangeNoteModal';
 
 class MoviePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: "",
-      youtubeSrcSlug: "",
+      movie: '',
+      youtubeSrcSlug: '',
       currentWatched: this.props.watchedMoviesRED,
       currentToWatch: this.props.toWatchMoviesRED,
       isChangeNoteModalActive: false,
     };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.toWatchMoviesRED !== prevState.currentToWatch) {
+      return {
+        currentToWatch: nextProps.toWatchMoviesRED,
+      };
+    }
+    return null;
   }
 
   componentDidMount() {
@@ -54,8 +63,8 @@ class MoviePage extends Component {
   toWatchHandler = e => {
     const { movie } = this.state;
     this.props.toWatchHandlerRED(movie);
-    e.target.innerText = "movie added";
-    e.target.setAttribute("disabled", "true");
+    e.target.innerText = 'movie added';
+    e.target.setAttribute('disabled', 'true');
   };
 
   userRatingHandler = (note, id) => {
