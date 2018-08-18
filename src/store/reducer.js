@@ -1,9 +1,9 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from './actionTypes';
 
 let initaialState = {
   toWatch: [],
   watched: [],
-  user: "",
+  user: '',
 };
 
 const reducer = (state = initaialState, action) => {
@@ -15,9 +15,8 @@ const reducer = (state = initaialState, action) => {
         watched: [...state.watched],
       };
     case actionTypes.USER_RATING:
-      const ratedMovie = [...state.toWatch].find(movie => movie.id === action.id);
+      const ratedMovie = { ...[...state.toWatch].find(movie => movie.id === action.id) };
       ratedMovie.my_note = action.note;
-
       return {
         ...state,
         toWatch: [...state.toWatch].filter(movie => movie.id !== action.id),
@@ -43,7 +42,7 @@ const reducer = (state = initaialState, action) => {
         watched: [...state.watched].filter(movie => movie.id !== action.id),
       };
     case actionTypes.USER_RATING_CHANGE:
-      const targetMovie = state.watched.find(movie => movie.id === action.id);
+      const targetMovie = { ...[...state.watched].find(movie => movie.id === action.id) };
       targetMovie.my_note = action.newNote;
       return {
         ...state,
