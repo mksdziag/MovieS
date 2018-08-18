@@ -1,7 +1,8 @@
-import React from "react";
-import "./YoutubeMovie.css";
+import React from 'react';
 
-const youtubeMovie = ({ title = "youtube movie", youtubeSrcSlug }) => {
+import './YoutubeMovie.css';
+
+const youtubeMovie = ({ title = 'youtube movie', youtubeSrcSlug }) => {
   return (
     <iframe
       className="youtube-iframe"

@@ -1,13 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import registerServiceWorker from "./registerServiceWorker";
-import { createStore, applyMiddleware, compose } from "redux";
-import { Provider } from "react-redux";
-import reduxThunk from "redux-thunk";
-import { saveStateToLocal, loadStateFromLocal } from "./store/loadStorage";
-import "./index.css";
-import App from "./App";
-import reducer from "./store/reducer";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import registerServiceWorker from './registerServiceWorker';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+
+import './index.css';
+import { saveStateToLocal, loadStateFromLocal } from './store/loadStorage';
+import reducer from './store/reducer';
+
+import App from './App';
 
 // redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -28,6 +30,6 @@ ReactDOM.render(
     <App />
   </Provider>,
 
-  document.getElementById("root")
+  document.getElementById('root')
 );
 registerServiceWorker();

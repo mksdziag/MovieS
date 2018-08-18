@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { userRating, deleteMovie } from '../../../store/actions';
+
 import Rating from '../../Rating/Rating';
 
 const toWatchItem = ({

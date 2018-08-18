@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Rating from "../Rating/Rating";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import Rating from '../Rating/Rating';
 
 const searchItem = ({
   id,
@@ -24,11 +25,11 @@ const searchItem = ({
             <h3 className="search__movie-title">{original_title}</h3>
             <p className="search__release-year">Release Year: {release_date.substring(0, 4)};</p>
             <p className="search__movie-overview">
-              {overview.split(" ").length > 45
+              {overview.split(' ').length > 45
                 ? overview
-                    .split(" ")
+                    .split(' ')
                     .splice(0, 40)
-                    .join(" ") + `...`
+                    .join(' ') + `...`
                 : overview}
             </p>
           </div>

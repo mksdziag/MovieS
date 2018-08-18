@@ -1,7 +1,8 @@
-import React from "react";
-import "./SimpleModal.css";
-import Fontawesome from "@fortawesome/react-fontawesome";
-import closeIcon from "@fortawesome/fontawesome-free-solid/faWindowClose";
+import React from 'react';
+import Fontawesome from '@fortawesome/react-fontawesome';
+import closeIcon from '@fortawesome/fontawesome-free-solid/faWindowClose';
+
+import './SimpleModal.css';
 
 const SimpleModal = ({ message, onCloseHandler }) => {
   return (

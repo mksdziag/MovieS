@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { userRatingFromSearch, addToToWatch, deleteMovie } from '../../store/actions';
-import { movieUrl, trailerUrl } from '../../assets/apiConfig';
-import './MoviePage.css';
 import Fontawesome from '@fortawesome/react-fontawesome';
 import backIcon from '@fortawesome/fontawesome-free-solid/faArrowAltCircleLeft';
+
+import './MoviePage.css';
+import { userRatingFromSearch, addToToWatch, deleteMovie } from '../../store/actions';
+import { movieUrl, trailerUrl } from '../../assets/apiConfig';
+
 import Rating from '../Rating/Rating';
 import YoutubeMovie from '../UiElements/Media/YoutubeMovie';
 import movieRatingColorize from '../../assets/helpers/movieRatingColorize';

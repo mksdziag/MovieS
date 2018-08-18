@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
-import "./TrendingItem.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './TrendingItem.css';
+import movieRatingColorize from '../../assets/helpers/movieRatingColorize';
+
 const searchItem = ({ id, vote_average, poster_path, original_title, release_date, place }) => {
   const noteColor = movieRatingColorize(vote_average);
 
@@ -13,7 +15,7 @@ const searchItem = ({ id, vote_average, poster_path, original_title, release_dat
           src={poster_path && `https://image.tmdb.org/t/p/w500${poster_path}`}
           alt=""
         />
-        <div className="trending-item__place">{place + "."}</div>
+        <div className="trending-item__place">{place + '.'}</div>
         <div style={noteColor} className="trending-item__rating">
           <span className="trending-item__rating-count">{vote_average}</span>
         </div>

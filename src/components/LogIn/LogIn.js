@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import { CSSTransition } from "react-transition-group";
-import "./LogIn.css";
-import SimpleModal from "../UiElements/Modals/SimpleModal";
+import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
+
+import './LogIn.css';
+import SimpleModal from '../UiElements/Modals/SimpleModal';
 
 class LogIn extends Component {
   state = {
     signUpMode: true,
-    userEmail: "",
-    userPassword: "",
+    userEmail: '',
+    userPassword: '',
     loginError: false,
-    errorMessage: "Something went wrong. Please try again...",
-    rodoMessage:
-      "Due to RODO, we cannot store your personal data, so registering is disabled. You can use this app as normal. Your data will be stored locally on Your browser. We do not deal with your personal info in any form",
+    errorMessage: 'Something went wrong. Please try again...',
     isRodoModalActive: false,
   };
 
@@ -60,9 +59,12 @@ class LogIn extends Component {
   };
 
   render() {
+    const rodoMessage =
+      'Due to RODO, we cannot store your personal data, so registering is disabled. You can use this app as normal. Your data will be stored locally on Your browser. We do not deal with your personal info in any form.';
+
     return (
       <section className="section log-in">
-        <h1 className="section__title">{this.state.signUpMode ? "Sign Up:" : "Log in:"}</h1>
+        <h1 className="section__title">{this.state.signUpMode ? 'Sign Up:' : 'Log in:'}</h1>
         <form className="form" onSubmit={this.formsubmitHandler}>
           {this.state.loginError && <h4>{this.state.errorMessage}</h4>}
           <input
@@ -81,14 +83,14 @@ class LogIn extends Component {
           <input
             type="submit"
             className="btn btn--success btn--input"
-            value={this.state.signUpMode ? "Register" : "Log in"}
+            value={this.state.signUpMode ? 'Register' : 'Log in'}
           />
           <div className="log-in-switch">
             <p className="log-in-switch__info">
-              {this.state.signUpMode ? "Already registered?" : "Not registered yet?"}
+              {this.state.signUpMode ? 'Already registered?' : 'Not registered yet?'}
             </p>
             <button onClick={this.switchModeHandler} className="btn btn--switch">
-              {this.state.signUpMode ? "Switch to Log in" : "Switch to sign up"}
+              {this.state.signUpMode ? 'Switch to Log in' : 'Switch to sign up'}
             </button>
           </div>
         </form>
@@ -99,7 +101,7 @@ class LogIn extends Component {
           mountOnEnter
           unmountOnExit
         >
-          <SimpleModal message={this.state.rodoMessage} onCloseHandler={this.modalCloseHandler} />
+          <SimpleModal message={rodoMessage} onCloseHandler={this.modalCloseHandler} />
         </CSSTransition>
       </section>
     );

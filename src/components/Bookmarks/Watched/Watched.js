@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import movieRatingColorize from '../../../assets/helpers/movieRatingColorize';
+
 import './Watched.css';
+import movieRatingColorize from '../../../assets/helpers/movieRatingColorize';
+
 import WatchedItem from './WatchedItem';
 import SectionTitle from '../../UiElements/SectionTitle';
 import ShareModal from '../../UiElements/Modals/ShareModal';

@@ -1,10 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "./AppHeader.css";
-import Fontawesome from "@fortawesome/react-fontawesome";
-import searchIcon from "@fortawesome/fontawesome-free-solid/faSearch";
-import loginIcon from "@fortawesome/fontawesome-free-solid/faUserAlt";
-import chartLineIcon from "@fortawesome/fontawesome-free-solid/faChartLine";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Fontawesome from '@fortawesome/react-fontawesome';
+import searchIcon from '@fortawesome/fontawesome-free-solid/faSearch';
+import loginIcon from '@fortawesome/fontawesome-free-solid/faUserAlt';
+import chartLineIcon from '@fortawesome/fontawesome-free-solid/faChartLine';
+
+import './AppHeader.css';
 
 const appHeader = () => {
   return (
@@ -18,15 +19,15 @@ const appHeader = () => {
         <div className="nav-links__wrapper">
           <NavLink className="nav-link" to="/trending">
             Trending
-            <Fontawesome style={{ margin: "0  .5rem" }} icon={chartLineIcon} />
+            <Fontawesome style={{ margin: '0  .5rem' }} icon={chartLineIcon} />
           </NavLink>
           <NavLink className="nav-link" to="/search">
             Search
-            <Fontawesome style={{ margin: "0 1rem 0 .5rem" }} icon={searchIcon} />
+            <Fontawesome style={{ margin: '0 1rem 0 .5rem' }} icon={searchIcon} />
           </NavLink>
           <NavLink strict={true} className="nav-link" to="/auth">
             Log in
-            <Fontawesome style={{ margin: "0  .5rem" }} icon={loginIcon} />
+            <Fontawesome style={{ margin: '0  .5rem' }} icon={loginIcon} />
           </NavLink>
         </div>
       </nav>

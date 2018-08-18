@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
-import { userRatingFromSearch, addToToWatch, deleteMovie } from "../../store/actions";
-import { searchUrl } from "../../assets/apiConfig";
-import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
-import "./Search.css";
-import SearchItem from "./SearchItem";
-import SimpleModal from "../UiElements/Modals/SimpleModal";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
+
+import './Search.css';
+import { userRatingFromSearch, addToToWatch, deleteMovie } from '../../store/actions';
+import { searchUrl } from '../../assets/apiConfig';
+import movieRatingColorize from '../../assets/helpers/movieRatingColorize';
+
+import SearchItem from './SearchItem';
+import SimpleModal from '../UiElements/Modals/SimpleModal';
 
 class Search extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class Search extends Component {
       currentWatched: this.props.watchedRED,
       currentToWatch: this.props.toWatchRED,
       isModalActive: false,
-      alertMessage: "",
+      alertMessage: '',
     };
   }
 
@@ -43,7 +45,7 @@ class Search extends Component {
     const wasAddedThisTime = this.state.addedThisTime.some(movie => movie.id === id);
 
     if (isOnToWatch || wasAddedThisTime) {
-      this.showModalInfo("This movie is already on Your To Watch list.");
+      this.showModalInfo('This movie is already on Your To Watch list.');
     } else if (isAlreadyRated) {
       this.showModalInfo("You've already watched and rated this movie.");
     } else {
@@ -107,7 +109,7 @@ class Search extends Component {
   hideModalInfo = () => {
     this.setState({
       isModalActive: false,
-      alertMessage: "",
+      alertMessage: '',
     });
   };
 

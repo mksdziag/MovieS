@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './ToWatch.css';
-import ToWatchItem from './ToWatchItem';
-import movieRatingColorize from '../../../assets/helpers/movieRatingColorize';
-import SectionTitle from '../../UiElements/SectionTitle';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+import './ToWatch.css';
+import movieRatingColorize from '../../../assets/helpers/movieRatingColorize';
+
+import ToWatchItem from './ToWatchItem';
+import SectionTitle from '../../UiElements/SectionTitle';
 
 const toWatch = props => {
   const { toWatchRED } = props;

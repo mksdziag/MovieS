@@ -1,10 +1,11 @@
-import React from "react";
-import "./ShareModal.css";
-import Fontawesome from "@fortawesome/react-fontawesome";
-import closeIcon from "@fortawesome/fontawesome-free-solid/faWindowClose";
-import { Icon } from "react-icons-kit";
-import { twitter } from "react-icons-kit/icomoon/twitter";
-import { facebook } from "react-icons-kit/icomoon/facebook";
+import React from 'react';
+import Fontawesome from '@fortawesome/react-fontawesome';
+import closeIcon from '@fortawesome/fontawesome-free-solid/faWindowClose';
+import { Icon } from 'react-icons-kit';
+import { twitter } from 'react-icons-kit/icomoon/twitter';
+import { facebook } from 'react-icons-kit/icomoon/facebook';
+
+import './ShareModal.css';
 
 const shareModal = ({ onCloseHandler, sharedUrl }) => {
   return (

@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "./Trending.css";
-import { popularUrl } from "../../assets/apiConfig";
-import movieRatingColorize from "../../assets/helpers/movieRatingColorize";
-import SectionTitle from "../UiElements/SectionTitle";
-import TrendingItem from "./TrendingItem";
+import React, { Component } from 'react';
+import axios from 'axios';
+
+import './Trending.css';
+import { popularUrl } from '../../assets/apiConfig';
+import movieRatingColorize from '../../assets/helpers/movieRatingColorize';
+
+import SectionTitle from '../UiElements/SectionTitle';
+import TrendingItem from './TrendingItem';
 
 class Trending extends Component {
   constructor(props) {

@@ -1,8 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import "./Favourites.css";
-import FavouritesItem from "./FavouritesItem";
-import SectionTitle from "../../UiElements/SectionTitle";
+import React from 'react';
+import { connect } from 'react-redux';
+
+import './Favourites.css';
+
+import FavouritesItem from './FavouritesItem';
+import SectionTitle from '../../UiElements/SectionTitle';
 
 const favourites = props => {
   const { watchedRED } = props;
